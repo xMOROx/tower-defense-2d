@@ -1,0 +1,33 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="tower_defence_2d"
+run/main_scene="uid://qta8rqnak8kh"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://scripts/game_manager.gd"
+
+[global_group]
+
+enemies=""
+
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="enemies"
+2d_physics/layer_3="detection_areas"
+2d_physics/layer_4="projectiles"
+2d_physics/layer_5="placed_towers"
+2d_physics/layer_6="unbuildable"
