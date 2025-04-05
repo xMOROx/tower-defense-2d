@@ -2,7 +2,7 @@ extends Node
 
 @export var enemy_scene: PackedScene = null 
 @export var enemy_path_nodepath: NodePath = NodePath()
-@export var spawn_interval: float = 2.0
+@export var spawn_interval: float = 0.3
 
 var path_node: Path2D = null
 @onready var timer: Timer = $Timer 
