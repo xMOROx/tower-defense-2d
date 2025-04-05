@@ -1,28 +1,28 @@
 extends Node2D
 
 # --- Signals ---
-signal show_upgrade_menu(tower) 
+signal show_upgrade_menu(tower)
 
 # --- BASE Exported Variables (Initial values for Level 1) ---
 @export var base_attack_damage: float = 5.0
-@export var base_damage_increase_per_level: float = 3.0 
+@export var base_damage_increase_per_level: float = 3.0
 @export var base_damage_upgrade_cost: int = 25
-@export var cost_increase_per_level_damage: int = 15 
+@export var cost_increase_per_level_damage: int = 15
 
-@export var base_range_radius: float = 100.0 
-@export var base_range_increase_factor: float = 1.15 
+@export var base_range_radius: float = 100.0
+@export var base_range_increase_factor: float = 1.15
 @export var base_range_upgrade_cost: int = 30
 @export var cost_increase_per_level_range: int = 20
 
-@export var base_attack_rate: float = 1.0 
+@export var base_attack_rate: float = 1.0
 
 @export var projectile_scene: PackedScene = null
 
 # --- Nodes ---
 @onready var detection_range: Area2D = $DetectionRange
 @onready var attack_timer: Timer = $AttackTimer
-@onready var click_area: Area2D = $ClickArea 
-@onready var range_shape: CollisionShape2D = $DetectionRange/CollisionShape2D 
+@onready var click_area: Area2D = $ClickArea
+@onready var range_shape: CollisionShape2D = $DetectionRange/CollisionShape2D
 
 # --- Internal INSTANCE Variables (Specific to this tower) ---
 var current_level: int = 1
@@ -30,11 +30,11 @@ var current_attack_damage: float
 var current_range_radius: float # Store current radius if needed elsewhere
 
 # --- Attack State ---
-var targets: Array[Node2D] = []          
-var current_target: Node2D = null        
+var targets: Array[Node2D] = []
+var current_target: Node2D = null
 
 # --- Range Indicator State ---
-var _is_showing_range: bool = false 
+var _is_showing_range: bool = false
 
 func _ready():
 	current_attack_damage = base_attack_damage
@@ -47,7 +47,7 @@ func _ready():
 
 	var attack_rate = base_attack_rate
 	if attack_timer:
-		attack_timer.wait_time = attack_rate 
+		attack_timer.wait_time = attack_rate
 		attack_timer.timeout.connect(_on_attack_timer_timeout)
 	else:
 		printerr(name + " could not find AttackTimer node!")
@@ -69,7 +69,7 @@ func _draw():
 	if _is_showing_range:
 		if range_shape and range_shape.shape is CircleShape2D:
 			var radius = range_shape.shape.radius
-			draw_circle(Vector2.ZERO, radius, Color(1.0, 1.0, 1.0, 0.7), 1.0, true) 
+			draw_circle(Vector2.ZERO, radius, Color(1.0, 1.0, 1.0, 0.7), 1.0, true)
 		else:
 			printerr(name + ": Cannot draw range, shape is not a CircleShape2D!")
 
@@ -89,18 +89,18 @@ func _on_detection_range_body_entered(body: Node2D):
 			if body.has_signal("died"):
 				if not body.is_connected("died", _on_target_died):
 					var flags = CONNECT_REFERENCE_COUNTED | CONNECT_ONE_SHOT
-					body.died.connect(_on_target_died.bind(body), flags)
+					body.died.connect(_on_target_died, flags)
 
 func _on_detection_range_body_exited(body: Node2D):
 	if body.is_in_group("enemies"):
 		var index = targets.find(body)
 		if index != -1:
 			targets.remove_at(index)
-			if current_target == body: 
+			if current_target == body:
 				print("Tower: Current target left range.")
 				current_target = null
-				attack_timer.stop() 
-				_update_target() # Immediately check for a new target
+				attack_timer.stop()
+				_update_target()
 			
 			if body.has_signal("died") and body.is_connected("died", _on_target_died):
 				body.died.disconnect(_on_target_died)
@@ -111,24 +111,24 @@ func _on_attack_timer_timeout():
 
 		if not new_projectile is Area2D or not new_projectile.has_method("launch"):
 			printerr("Tower Error: Projectile scene is invalid or missing launch() method.")
-			if new_projectile: new_projectile.queue_free() 
+			if new_projectile: new_projectile.queue_free()
 			return
 
-		get_tree().root.add_child(new_projectile) 
-		new_projectile.global_position = global_position 
-		new_projectile.launch(current_target, current_attack_damage) 
+		get_tree().root.add_child(new_projectile)
+		new_projectile.global_position = global_position
+		new_projectile.launch(current_target, current_attack_damage)
 
 		if not is_instance_valid(current_target):
 			attack_timer.stop()
-			_update_target() 
+			_update_target()
 			
 	elif projectile_scene == null:
 		printerr("Tower Error: Projectile Scene not assigned!")
-		attack_timer.stop() 
-	else: 
 		attack_timer.stop()
-		current_target = null 
-		_update_target() 
+	else:
+		attack_timer.stop()
+		current_target = null
+		_update_target()
 
 func _on_target_died(enemy_that_died: Node2D):
 	print("Tower: Detected target died signal - ", enemy_that_died.name)
@@ -140,13 +140,13 @@ func _on_target_died(enemy_that_died: Node2D):
 	if current_target == enemy_that_died:
 		print("Tower: Current target confirmed dead.")
 		current_target = null
-		attack_timer.stop() 
-		_update_target() 
+		attack_timer.stop()
+		_update_target()
 
 func _on_click_area_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		print(name + " clicked!")
-		emit_signal("show_upgrade_menu", self) 
+		emit_signal("show_upgrade_menu", self)
 		get_viewport().set_input_as_handled()
 
 func show_range_indicator():
@@ -157,7 +157,7 @@ func show_range_indicator():
 func hide_range_indicator():
 	if _is_showing_range:
 		_is_showing_range = false
-		queue_redraw() 
+		queue_redraw()
 
 # --- Upgrade Functions (Placeholders for now) ---
 func get_damage_upgrade_cost() -> int:
@@ -168,7 +168,7 @@ func get_range_upgrade_cost() -> int:
 
 func upgrade_damage():
 	current_attack_damage += base_damage_increase_per_level
-	current_level += 1 
+	current_level += 1
 	print(name + " damage upgraded! Lvl:", current_level, " New damage:", current_attack_damage, " Next cost:", get_damage_upgrade_cost())
 
 func upgrade_range():
@@ -176,9 +176,9 @@ func upgrade_range():
 		var new_radius = current_range_radius * base_range_increase_factor
 		
 		range_shape.shape.radius = new_radius
-		current_range_radius = new_radius 
+		current_range_radius = new_radius
 		
-		current_level += 1 
+		current_level += 1
 		
 		if _is_showing_range:
 			queue_redraw()
