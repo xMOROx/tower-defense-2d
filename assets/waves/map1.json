@@ -1,0 +1,46 @@
+[
+	{
+		"wave_name": "Wave 1: The Basics",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://enemies/enemy.tscn",
+				"count": 5.0,
+				"interval": 1.0,
+				"start_delay": 0.1
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 2: More!",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://enemies/enemy.tscn",
+				"count": 8.0,
+				"interval": 0.8,
+				"start_delay": 0.1
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 3: Faster Intro",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://enemies/enemy.tscn",
+				"count": 10.0,
+				"interval": 0.6,
+				"start_delay": 0.1
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 4: Escalation",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://enemies/enemy.tscn",
+				"count": 15.0,
+				"interval": 0.5,
+				"start_delay": 0.1
+			}
+		]
+	}
+]

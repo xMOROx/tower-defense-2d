@@ -1,28 +1,28 @@
 extends Node2D
 
 # --- Signals ---
-signal show_upgrade_menu(tower) 
+signal show_upgrade_menu(tower)
 
 # --- BASE Exported Variables (Initial values for Level 1) ---
 @export var base_attack_damage: float = 5.0
-@export var base_damage_increase_per_level: float = 3.0 
+@export var base_damage_increase_per_level: float = 3.0
 @export var base_damage_upgrade_cost: int = 25
-@export var cost_increase_per_level_damage: int = 15 
+@export var cost_increase_per_level_damage: int = 15
 
-@export var base_range_radius: float = 100.0 
-@export var base_range_increase_factor: float = 1.15 
+@export var base_range_radius: float = 100.0
+@export var base_range_increase_factor: float = 1.15
 @export var base_range_upgrade_cost: int = 30
 @export var cost_increase_per_level_range: int = 20
 
-@export var base_attack_rate: float = 1.0 
+@export var base_attack_rate: float = 1.0
 
 @export var projectile_scene: PackedScene = null
 
 # --- Nodes ---
 @onready var detection_range: Area2D = $DetectionRange
 @onready var attack_timer: Timer = $AttackTimer
-@onready var click_area: Area2D = $ClickArea 
-@onready var range_shape: CollisionShape2D = $DetectionRange/CollisionShape2D 
+@onready var click_area: Area2D = $ClickArea
+@onready var range_shape: CollisionShape2D = $DetectionRange/CollisionShape2D
 
 # --- Internal INSTANCE Variables (Specific to this tower) ---
 var current_level: int = 1
@@ -30,12 +30,12 @@ var current_attack_damage: float
 var current_range_radius: float # Store current radius if needed elsewhere
 
 # --- Attack State ---
-var targets: Array[Node2D] = []          
-var current_target: Node2D = null        
+var targets: Array[Node2D] = []
+var current_target: Node2D = null
 
 # --- Range Indicator State ---
-var _is_showing_range: bool = false 
-var ready_to_shoot: bool = true  # New state variable for readiness
+var _is_showing_range: bool = false
+var ready_to_shoot: bool = true # New state variable for readiness
 var is_placed: bool = false
 
 
@@ -50,7 +50,7 @@ func _ready():
 
 	var attack_rate = base_attack_rate
 	if attack_timer:
-		attack_timer.wait_time = attack_rate 
+		attack_timer.wait_time = attack_rate
 		attack_timer.timeout.connect(_on_attack_timer_timeout)
 	else:
 		printerr(name + " could not find AttackTimer node!")
@@ -72,7 +72,7 @@ func _draw():
 	if _is_showing_range:
 		if range_shape and range_shape.shape is CircleShape2D:
 			var radius = range_shape.shape.radius
-			draw_circle(Vector2.ZERO, radius, Color(1.0, 1.0, 1.0, 0.7), 1.0, true) 
+			draw_circle(Vector2.ZERO, radius, Color(1.0, 1.0, 1.0, 0.7), 1.0, true)
 		else:
 			printerr(name + ": Cannot draw range, shape is not a CircleShape2D!")
 
@@ -84,7 +84,7 @@ func _notification(what):
 # --- Signal Callback Functions ---
 
 func _on_detection_range_body_entered(body: Node2D):
-	if not is_placed: 
+	if not is_placed:
 		return
 	if body.is_in_group("enemies"):
 		if not targets.has(body):
@@ -96,10 +96,10 @@ func _on_detection_range_body_entered(body: Node2D):
 			if body.has_signal("died"):
 				if not body.is_connected("died", _on_target_died):
 					var flags = CONNECT_REFERENCE_COUNTED | CONNECT_ONE_SHOT
-					body.died.connect(_on_target_died.bind(body), flags)
+					body.died.connect(_on_target_died, flags)
 
 func _on_detection_range_body_exited(body: Node2D):
-	if not is_placed: 
+	if not is_placed:
 		return
 	if body.is_in_group("enemies"):
 		var index = targets.find(body)
@@ -124,15 +124,15 @@ func _on_target_died(enemy_that_died: Node2D):
 	if current_target == enemy_that_died:
 		print("Tower: Current target confirmed dead.")
 		current_target = null
-		attack_timer.stop() 
+		attack_timer.stop()
 
 func _on_click_area_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		if not is_placed:
 			is_placed = true
 			attack_timer.start()
-		else:	
-			emit_signal("show_upgrade_menu", self) 
+		else:
+			emit_signal("show_upgrade_menu", self)
 			get_viewport().set_input_as_handled()
 
 func show_range_indicator():
@@ -143,7 +143,7 @@ func show_range_indicator():
 func hide_range_indicator():
 	if _is_showing_range:
 		_is_showing_range = false
-		queue_redraw() 
+		queue_redraw()
 		
 func attack_enemy(enemy_to_attack):
 	if is_instance_valid(enemy_to_attack) and projectile_scene != null:
@@ -155,12 +155,12 @@ func attack_enemy(enemy_to_attack):
 
 		if not new_projectile is Area2D or not new_projectile.has_method("launch"):
 			printerr("Tower Error: Projectile scene is invalid or missing launch() method.")
-			if new_projectile: new_projectile.queue_free() 
+			if new_projectile: new_projectile.queue_free()
 			return
 
-		get_tree().root.add_child(new_projectile) 
-		new_projectile.global_position = global_position 
-		new_projectile.launch(enemy_to_attack, current_attack_damage) 
+		get_tree().root.call_deferred("add_child", new_projectile)
+		new_projectile.global_position = global_position
+		new_projectile.call_deferred("launch", enemy_to_attack, current_attack_damage)
 		
 		attack_timer.start()
 			
@@ -177,7 +177,7 @@ func get_range_upgrade_cost() -> int:
 
 func upgrade_damage():
 	current_attack_damage += base_damage_increase_per_level
-	current_level += 1 
+	current_level += 1
 	print(name + " damage upgraded! Lvl:", current_level, " New damage:", current_attack_damage, " Next cost:", get_damage_upgrade_cost())
 
 func upgrade_range():
@@ -185,14 +185,12 @@ func upgrade_range():
 		var new_radius = current_range_radius * base_range_increase_factor
 		
 		range_shape.shape.radius = new_radius
-		current_range_radius = new_radius 
+		current_range_radius = new_radius
 		
-		current_level += 1 
+		current_level += 1
 		
 		if _is_showing_range:
 			queue_redraw()
 		print(name + " range upgraded! Lvl:", current_level, " New radius:", current_range_radius, " Next cost:", get_range_upgrade_cost())
 	else:
 		printerr(name + " cannot upgrade range: Invalid shape node.")
-
-# --- Helper Functions ---

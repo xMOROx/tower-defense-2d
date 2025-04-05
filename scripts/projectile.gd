@@ -3,8 +3,8 @@ extends Area2D
 @export var speed: float = 400.0 # Pixels per second
 
 
-var target: Node2D = null       # The enemy node this projectile is chasing
-var damage: float = 0.0         # Damage to deal upon hit
+var target: Node2D = null # The enemy node this projectile is chasing
+var damage: float = 0.0 # Damage to deal upon hit
 
 # Optional: Set a maximum lifetime to prevent stray projectiles
 @onready var lifetime_timer: Timer = Timer.new()
