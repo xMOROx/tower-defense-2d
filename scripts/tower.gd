@@ -35,6 +35,9 @@ var current_target: Node2D = null
 
 # --- Range Indicator State ---
 var _is_showing_range: bool = false 
+var ready_to_shoot: bool = true  # New state variable for readiness
+var is_placed: bool = false
+
 
 func _ready():
 	current_attack_damage = base_attack_damage
@@ -81,10 +84,14 @@ func _notification(what):
 # --- Signal Callback Functions ---
 
 func _on_detection_range_body_entered(body: Node2D):
+	if not is_placed: 
+		return
 	if body.is_in_group("enemies"):
 		if not targets.has(body):
 			targets.append(body)
-			_update_target()
+			
+			if ready_to_shoot:
+				attack_enemy(body)
 
 			if body.has_signal("died"):
 				if not body.is_connected("died", _on_target_died):
@@ -92,43 +99,20 @@ func _on_detection_range_body_entered(body: Node2D):
 					body.died.connect(_on_target_died.bind(body), flags)
 
 func _on_detection_range_body_exited(body: Node2D):
+	if not is_placed: 
+		return
 	if body.is_in_group("enemies"):
 		var index = targets.find(body)
 		if index != -1:
 			targets.remove_at(index)
-			if current_target == body: 
-				print("Tower: Current target left range.")
-				current_target = null
-				attack_timer.stop() 
-				_update_target() # Immediately check for a new target
 			
 			if body.has_signal("died") and body.is_connected("died", _on_target_died):
 				body.died.disconnect(_on_target_died)
 
 func _on_attack_timer_timeout():
-	if is_instance_valid(current_target) and projectile_scene != null:
-		var new_projectile = projectile_scene.instantiate()
-
-		if not new_projectile is Area2D or not new_projectile.has_method("launch"):
-			printerr("Tower Error: Projectile scene is invalid or missing launch() method.")
-			if new_projectile: new_projectile.queue_free() 
-			return
-
-		get_tree().root.add_child(new_projectile) 
-		new_projectile.global_position = global_position 
-		new_projectile.launch(current_target, current_attack_damage) 
-
-		if not is_instance_valid(current_target):
-			attack_timer.stop()
-			_update_target() 
-			
-	elif projectile_scene == null:
-		printerr("Tower Error: Projectile Scene not assigned!")
-		attack_timer.stop() 
-	else: 
-		attack_timer.stop()
-		current_target = null 
-		_update_target() 
+	ready_to_shoot = true
+	if not targets.is_empty():
+		attack_enemy(targets[0])
 
 func _on_target_died(enemy_that_died: Node2D):
 	print("Tower: Detected target died signal - ", enemy_that_died.name)
@@ -141,13 +125,15 @@ func _on_target_died(enemy_that_died: Node2D):
 		print("Tower: Current target confirmed dead.")
 		current_target = null
 		attack_timer.stop() 
-		_update_target() 
 
 func _on_click_area_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		print(name + " clicked!")
-		emit_signal("show_upgrade_menu", self) 
-		get_viewport().set_input_as_handled()
+		if not is_placed:
+			is_placed = true
+			attack_timer.start()
+		else:	
+			emit_signal("show_upgrade_menu", self) 
+			get_viewport().set_input_as_handled()
 
 func show_range_indicator():
 	if not _is_showing_range:
@@ -158,6 +144,29 @@ func hide_range_indicator():
 	if _is_showing_range:
 		_is_showing_range = false
 		queue_redraw() 
+		
+func attack_enemy(enemy_to_attack):
+	if is_instance_valid(enemy_to_attack) and projectile_scene != null:
+		ready_to_shoot = false
+		look_at(enemy_to_attack.global_position)
+		rotation += deg_to_rad(90)
+		
+		var new_projectile = projectile_scene.instantiate()
+
+		if not new_projectile is Area2D or not new_projectile.has_method("launch"):
+			printerr("Tower Error: Projectile scene is invalid or missing launch() method.")
+			if new_projectile: new_projectile.queue_free() 
+			return
+
+		get_tree().root.add_child(new_projectile) 
+		new_projectile.global_position = global_position 
+		new_projectile.launch(enemy_to_attack, current_attack_damage) 
+		
+		attack_timer.start()
+			
+	elif projectile_scene == null:
+		printerr("Tower Error: Projectile Scene not assigned!")
+	
 
 # --- Upgrade Functions (Placeholders for now) ---
 func get_damage_upgrade_cost() -> int:
@@ -187,16 +196,3 @@ func upgrade_range():
 		printerr(name + " cannot upgrade range: Invalid shape node.")
 
 # --- Helper Functions ---
-
-func _update_target():
-	targets = targets.filter(func(enemy): return is_instance_valid(enemy))
-
-	if not is_instance_valid(current_target):
-		if not targets.is_empty():
-			current_target = targets[0]
-			print("Tower: New target acquired - ", current_target.name)
-			attack_timer.start()
-		else:
-			current_target = null
-			if attack_timer.is_stopped() == false:
-				attack_timer.stop()
