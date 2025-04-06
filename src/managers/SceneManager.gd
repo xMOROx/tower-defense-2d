@@ -1,8 +1,8 @@
 extends Control
 
-var main_menu_path = "res://ui/MainMenu.tscn"
-var level_select_path = "res://ui/LevelSelect.tscn"
-var game_over_path = "res://ui/GameOver.tscn"
+var main_menu_path = "res://scenes/ui/MainMenu.tscn"
+var level_select_path = "res://scenes/ui/LevelSelect.tscn"
+var game_over_path = "res://scenes/ui/GameOver.tscn"
 
 
 var current_scene_node: Node = null

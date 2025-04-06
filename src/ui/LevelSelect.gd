@@ -3,7 +3,7 @@ extends Control
 @onready var level_1_button: Button = $Levels/Row1/Level1
 @onready var menu_button: Button = $MenuButton
 
-var level_1_scene_path = "res://maps/Level_1.tscn"
+var level_1_scene_path = "res://scenes/maps/Level_1.tscn"
 
 func _ready():
 	level_1_button.pressed.connect(_on_level_1_button_pressed)

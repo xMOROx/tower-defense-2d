@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdbsdv6gi1k0g"]
+
+[ext_resource type="Script" uid="uid://byldekchhn1ii" path="res://src/Enemy.gd" id="1_7frlh"]
+[ext_resource type="Texture2D" uid="uid://c0x2mx1blwlwl" path="res://assets/graphics/towerDefense_tilesheet.png" id="2_7frlh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_orwns"]
+radius = 15.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7frlh"]
+bg_color = Color(0.6, 0.09, 0.09, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orwns"]
+bg_color = Color(0.257255, 0.69, 0.2001, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 0
+input_pickable = true
+script = ExtResource("1_7frlh")
+speed = 80.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7frlh")
+region_enabled = true
+region_rect = Rect2(961, 641, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_orwns")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = 15.0
+offset_right = 44.0
+offset_bottom = 42.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_7frlh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_orwns")
+value = 100.0
+rounded = true
+show_percentage = false
