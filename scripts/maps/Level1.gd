@@ -2,21 +2,21 @@ extends Node2D
 
 @onready var build_tower_button: Button = $HUD/BuildTowerButton
 @onready var towers_container: Node2D = $TowersContainer
-@onready var upgrade_menu: Control = $HUD/TowerUpgradeMenu 
+@onready var upgrade_menu: Control = $HUD/TowerUpgradeMenu
 
 
 # --- Export Tower Data ---
-@export var basic_tower_scene: PackedScene = null 
+@export var basic_tower_scene: PackedScene = null
 @export var basic_tower_cost: int = 50
 
 # --- Building State Variables ---
 var is_building: bool = false
-var building_tower_scene: PackedScene = null 
-var tower_preview_instance: Node2D = null 
+var building_tower_scene: PackedScene = null
+var tower_preview_instance: Node2D = null
 var placement_valid: bool = false
 
 # --- Selection State ---
-var currently_selected_tower: Node = null 
+var currently_selected_tower: Node = null
 
 # --- Constants for Preview ---
 const PLACEMENT_VALID_COLOR = Color(0.0, 1.0, 0.0, 0.5) # Greenish transparent
@@ -35,10 +35,40 @@ func _ready():
 		build_tower_button.text = "Build Tower (Cost: %d)" % basic_tower_cost
 		build_tower_button.disabled = not GameManager.can_afford(basic_tower_cost)
 		GameManager.currency_changed.connect(_on_currency_changed_update_build_buttons)
+	
+
+	reset_level_state()
 		
 	set_process_input(false)
 
+# --- Level Reset Logic ---
+func reset_level_state():
+	if is_building:
+		cancel_building()
+	
+	if upgrade_menu and upgrade_menu.visible:
+		upgrade_menu.hide()
+	
+	currently_selected_tower = null
+	
+	clear_all_towers()
+	
+	if build_tower_button:
+		build_tower_button.disabled = not GameManager.can_afford(basic_tower_cost)
 
+func clear_all_towers():
+	if not is_instance_valid(towers_container):
+		return
+	
+	for tower in towers_container.get_children():
+		if is_instance_valid(tower):
+			if tower.has_signal("show_upgrade_menu") and tower.is_connected("show_upgrade_menu", _on_tower_show_upgrade_menu):
+				tower.show_upgrade_menu.disconnect(_on_tower_show_upgrade_menu)
+			tower.queue_free()
+	
+	print("Level1: All towers cleared")
+
+# --- Input Handling ---
 func _input(event):
 	if not is_building:
 		return
@@ -59,9 +89,8 @@ func _input(event):
 func _on_build_tower_button_pressed():
 	if is_building:
 		cancel_building()
-		return 
+		return
 		
-	# Check affordability
 	if not GameManager.can_afford(basic_tower_cost):
 		print("Cannot afford tower!")
 		# TODO: Play sound effect
@@ -69,11 +98,11 @@ func _on_build_tower_button_pressed():
 
 	print("Starting tower build process...")
 	is_building = true
-	building_tower_scene = basic_tower_scene 
+	building_tower_scene = basic_tower_scene
 	
 	tower_preview_instance = building_tower_scene.instantiate()
 	
-	add_child(tower_preview_instance) 
+	add_child(tower_preview_instance)
 	tower_preview_instance.global_position = get_global_mouse_position()
 	
 	tower_preview_instance.modulate = PLACEMENT_INVALID_COLOR # Start as invalid until checked
@@ -81,7 +110,7 @@ func _on_build_tower_button_pressed():
 	if preview_area is Area2D:
 		preview_area.collision_mask = 0 # Reset mask
 		# Check against 'placed_towers' (bit 4 = 16) and 'unbuildable' (bit 5 = 32)
-		preview_area.collision_mask = (1 << 4) | (1 << 5) 
+		preview_area.collision_mask = (1 << 4) | (1 << 5)
 	else:
 		printerr("Preview instance is missing PlacementArea!")
 		cancel_building()
@@ -110,7 +139,7 @@ func check_placement_validity():
 func try_place_tower():
 	if not is_building or not is_instance_valid(tower_preview_instance): return
 	
-	check_placement_validity() 
+	check_placement_validity()
 
 	if placement_valid:
 		if GameManager.spend_currency(basic_tower_cost):
@@ -138,7 +167,7 @@ func try_place_tower():
 func cancel_building():
 	print("Cancelling build process.")
 	if is_instance_valid(tower_preview_instance):
-		tower_preview_instance.queue_free() 
+		tower_preview_instance.queue_free()
 	
 	tower_preview_instance = null
 	building_tower_scene = null
@@ -149,7 +178,7 @@ func cancel_building():
 
 # --- Signal Handlers ---
 
-func _on_tower_show_upgrade_menu(tower: Node) -> void: 
+func _on_tower_show_upgrade_menu(tower: Node) -> void:
 	if is_building:
 		cancel_building()
 
@@ -159,9 +188,9 @@ func _on_tower_show_upgrade_menu(tower: Node) -> void:
 	currently_selected_tower = tower
 	if currently_selected_tower.has_method("show_range_indicator"):
 		currently_selected_tower.show_range_indicator()
-	if upgrade_menu == null: return 
-	if not upgrade_menu.has_method("show_for_tower"): return 
-	upgrade_menu.show_for_tower(tower) 
+	if upgrade_menu == null: return
+	if not upgrade_menu.has_method("show_for_tower"): return
+	upgrade_menu.show_for_tower(tower)
 
 func _on_upgrade_menu_visibility_changed():
 	if not upgrade_menu.visible and is_instance_valid(currently_selected_tower):
@@ -172,4 +201,3 @@ func _on_upgrade_menu_visibility_changed():
 func _on_currency_changed_update_build_buttons(current_currency: int):
 	if build_tower_button:
 		build_tower_button.disabled = not GameManager.can_afford(basic_tower_cost)
-		# Add checks for other tower build buttons here later
