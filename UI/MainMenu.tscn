@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://deeccfpl5hfre"]
+[gd_scene load_steps=11 format=3 uid="uid://deeccfpl5hfre"]
 
 [ext_resource type="Script" uid="uid://35a0qp1k3x6x" path="res://scripts/ui/MainMenu.gd" id="1_obtq6"]
 [ext_resource type="Texture2D" uid="uid://d1erk6d0yg0ek" path="res://assets/ui/Background/Vector/Forest.png" id="1_uahxu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ciopj22wymlcd" path="res://assets/ui/Logotype/NameBack.png" id="3_8aown"]
 [ext_resource type="Texture2D" uid="uid://r1man4x3xf8q" path="res://assets/ui/Button/Rect/Fill/Default.png" id="4_g5fyd"]
 [ext_resource type="Texture2D" uid="uid://chmk7abvx17df" path="res://assets/ui/Logotype/Arrow.png" id="4_t6syg"]
+[ext_resource type="FontFile" uid="uid://crg0iil34cmrw" path="res://assets/fonts/Bungee-Regular.otf" id="5_youui"]
 [ext_resource type="Texture2D" uid="uid://dyql5nnfkdamt" path="res://assets/ui/Button/Square/Fill/Default.png" id="7_g5fyd"]
 [ext_resource type="Texture2D" uid="uid://dw2penpqpgyl5" path="res://assets/ui/Icon/Cross.png" id="9_uvwf2"]
 
@@ -48,11 +49,13 @@ flat = true
 
 [node name="PlayLabel" type="Label" parent="Background/Buttons/StartButton"]
 layout_mode = 0
-offset_left = 43.0
-offset_top = 5.0
-offset_right = 175.0
-offset_bottom = 72.0
+offset_left = 38.0
+offset_top = 14.0
+offset_right = 172.0
+offset_bottom = 81.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.960784, 0.486275, 0, 1)
+theme_override_fonts/font = ExtResource("5_youui")
 theme_override_font_sizes/font_size = 48
 text = "PLAY"
 
@@ -103,6 +106,18 @@ rotation = -1.14145
 texture = ExtResource("4_t6syg")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="Title" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 672.0
+offset_top = 175.0
+offset_right = 1151.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_youui")
+theme_override_font_sizes/font_size = 56
+text = "Tower Defense"
 
 [node name="Exit" type="Button" parent="."]
 offset_left = 1719.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cr26tm18mng7e"]
+[gd_scene load_steps=8 format=3 uid="uid://cr26tm18mng7e"]
 
 [ext_resource type="Texture2D" uid="uid://dkjt7kwibfd86" path="res://assets/ui/Background/Shadow.png" id="1_cvna2"]
 [ext_resource type="Script" uid="uid://br1ky0sktpylt" path="res://scripts/GameOver.gd" id="1_rik4a"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cc77m5nklqm6f" path="res://assets/ui/Buttons/Square/Levels/Default.png" id="4_dpy0x"]
 [ext_resource type="Texture2D" uid="uid://dyql5nnfkdamt" path="res://assets/ui/Button/Square/Fill/Default.png" id="5_0m856"]
 [ext_resource type="Texture2D" uid="uid://dw2penpqpgyl5" path="res://assets/ui/Icon/Cross.png" id="6_upu5a"]
+[ext_resource type="FontFile" uid="uid://crg0iil34cmrw" path="res://assets/fonts/Bungee-Regular.otf" id="7_upu5a"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -50,3 +51,14 @@ flat = true
 position = Vector2(47, 39)
 scale = Vector2(0.785714, 0.785714)
 texture = ExtResource("6_upu5a")
+
+[node name="GameOverLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 773.0
+offset_top = 455.0
+offset_right = 1111.0
+offset_bottom = 512.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_upu5a")
+theme_override_font_sizes/font_size = 56
+text = "Game Over"
