@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dhic07exb4uhr"]
 
-[ext_resource type="Script" uid="uid://bid85r8hqx05i" path="res://scripts/tower_upgrade_menu.gd" id="1_h51m2"]
+[ext_resource type="Script" uid="uid://bid85r8hqx05i" path="res://scripts/TowerUpgradeMenu.gd" id="1_h51m2"]
 
 [node name="TowerUpgradeMenu" type="Control"]
 layout_mode = 3

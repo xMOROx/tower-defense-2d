@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cdbsdv6gi1k0g"]
 
-[ext_resource type="Script" uid="uid://byldekchhn1ii" path="res://scripts/enemy.gd" id="1_7frlh"]
+[ext_resource type="Script" uid="uid://byldekchhn1ii" path="res://scripts/Enemy.gd" id="1_7frlh"]
 [ext_resource type="Texture2D" uid="uid://c0x2mx1blwlwl" path="res://assets/graphics/towerDefense_tilesheet.png" id="2_7frlh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_orwns"]

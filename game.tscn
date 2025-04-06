@@ -1,12 +1,12 @@
 [gd_scene load_steps=13 format=4 uid="uid://qta8rqnak8kh"]
 
-[ext_resource type="Script" uid="uid://cmvcy8212tli5" path="res://game.gd" id="1_j5wjh"]
+[ext_resource type="Script" uid="uid://cmvcy8212tli5" path="res://Game.gd" id="1_j5wjh"]
 [ext_resource type="Script" uid="uid://dadif0l11mskl" path="res://scripts/Spawner.gd" id="2_feb5d"]
 [ext_resource type="TileSet" uid="uid://clhx4yx22v4j6" path="res://assets/tiles/terrain.tres" id="3_eow3j"]
 [ext_resource type="PackedScene" uid="uid://cdbsdv6gi1k0g" path="res://enemies/enemy.tscn" id="3_feb5d"]
 [ext_resource type="PackedScene" uid="uid://dypncu8rnysyf" path="res://enemies/WaveManager.tscn" id="3_j5wjh"]
 [ext_resource type="PackedScene" uid="uid://dsdhiykb81bg" path="res://towers/tower.tscn" id="4_fc0e3"]
-[ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://scripts/hud.gd" id="6_ryrav"]
+[ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://scripts/Hud.gd" id="6_ryrav"]
 [ext_resource type="PackedScene" uid="uid://dhic07exb4uhr" path="res://UI/TowerUpgradeMenu.tscn" id="7_eow3j"]
 
 [sub_resource type="Curve2D" id="Curve2D_fc0e3"]

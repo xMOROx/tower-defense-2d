@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://1wam1py6jwsm"]
 
-[ext_resource type="Script" uid="uid://c0s51og5uqxti" path="res://scripts/projectile.gd" id="1_5m5s1"]
+[ext_resource type="Script" uid="uid://c0s51og5uqxti" path="res://scripts/Projectile.gd" id="1_5m5s1"]
 [ext_resource type="Texture2D" uid="uid://c0x2mx1blwlwl" path="res://assets/graphics/towerDefense_tilesheet.png" id="2_bm2i7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1albn"]
