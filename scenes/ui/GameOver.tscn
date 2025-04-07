@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://cr26tm18mng7e"]
+
+[ext_resource type="Script" uid="uid://br1ky0sktpylt" path="res://src/GameOver.gd" id="1_o4wla"]
+[ext_resource type="Texture2D" uid="uid://dkjt7kwibfd86" path="res://assets/ui/Background/Shadow.png" id="2_xgyu6"]
+[ext_resource type="Texture2D" uid="uid://jeylcyhvlt2s" path="res://assets/ui/Buttons/Square/Repeat/Default.png" id="3_1q2vd"]
+[ext_resource type="Texture2D" uid="uid://cc77m5nklqm6f" path="res://assets/ui/Buttons/Square/Levels/Default.png" id="4_sobie"]
+[ext_resource type="Texture2D" uid="uid://dyql5nnfkdamt" path="res://assets/ui/Button/Square/Fill/Default.png" id="5_ujpma"]
+[ext_resource type="Texture2D" uid="uid://dw2penpqpgyl5" path="res://assets/ui/Icon/Cross.png" id="6_0j54c"]
+[ext_resource type="FontFile" uid="uid://crg0iil34cmrw" path="res://assets/fonts/Bungee-Regular.otf" id="7_028wy"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_o4wla")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_xgyu6")
+expand_mode = 1
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 827.0
+offset_top = 535.0
+offset_right = 1051.0
+offset_bottom = 627.0
+theme_override_constants/separation = 40
+
+[node name="Retry" type="Button" parent="Buttons"]
+layout_mode = 2
+icon = ExtResource("3_1q2vd")
+flat = true
+
+[node name="Levels" type="Button" parent="Buttons"]
+layout_mode = 2
+icon = ExtResource("4_sobie")
+flat = true
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1719.0
+offset_top = 944.0
+offset_right = 1811.0
+offset_bottom = 1036.0
+icon = ExtResource("5_ujpma")
+flat = true
+
+[node name="Cross" type="Sprite2D" parent="Exit"]
+position = Vector2(47, 39)
+scale = Vector2(0.785714, 0.785714)
+texture = ExtResource("6_0j54c")
+
+[node name="GameOverLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 773.0
+offset_top = 455.0
+offset_right = 1111.0
+offset_bottom = 512.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_028wy")
+theme_override_font_sizes/font_size = 56
+text = "Game Over"

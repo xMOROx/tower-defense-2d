@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsdhiykb81bg"]
+
+[ext_resource type="Script" uid="uid://w48ny2hj251j" path="res://src/Tower.gd" id="1_uyl23"]
+[ext_resource type="PackedScene" uid="uid://1wam1py6jwsm" path="res://scenes/towers/projectile.tscn" id="2_b4iyp"]
+[ext_resource type="Texture2D" uid="uid://c0x2mx1blwlwl" path="res://assets/graphics/towerDefense_tilesheet.png" id="2_uyl23"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4iyp"]
+size = Vector2(27, 27)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_04ow6"]
+radius = 331.567
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyl23"]
+size = Vector2(25, 25)
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_uyl23")
+base_range_radius = 200.0
+base_attack_rate = 0.4
+projectile_scene = ExtResource("2_b4iyp")
+
+[node name="PlacementArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlacementArea"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_b4iyp")
+debug_color = Color(0.86, 0.0774, 0.27305, 0.419608)
+
+[node name="body" type="Sprite2D" parent="."]
+position = Vector2(9.53674e-07, 9.53674e-07)
+scale = Vector2(0.476563, 0.476563)
+texture = ExtResource("2_uyl23")
+region_enabled = true
+region_rect = Rect2(1217, 449, 64, 64)
+
+[node name="head" type="Sprite2D" parent="body"]
+position = Vector2(0, -2.09836)
+scale = Vector2(0.93989, 0.93989)
+texture = ExtResource("2_uyl23")
+region_enabled = true
+region_rect = Rect2(1224, 520, 48, 48)
+
+[node name="DetectionRange" type="Area2D" parent="."]
+scale = Vector2(0.476563, 0.476563)
+collision_layer = 0
+collision_mask = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_04ow6")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="ClickArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_uyl23")
+debug_color = Color(0, 0.581366, 0.666777, 0.42)
