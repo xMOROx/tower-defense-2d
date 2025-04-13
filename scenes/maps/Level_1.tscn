@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dypncu8rnysyf" path="res://scenes/enemies/WaveManager.tscn" id="2_55yl8"]
 [ext_resource type="PackedScene" uid="uid://dsdhiykb81bg" path="res://scenes/towers/tower.tscn" id="2_vkvtd"]
 [ext_resource type="Script" uid="uid://dadif0l11mskl" path="res://src/Spawner.gd" id="3_tuf7a"]
-[ext_resource type="PackedScene" uid="uid://cdbsdv6gi1k0g" path="res://scenes/enemies/enemy.tscn" id="4_bsx1b"]
+[ext_resource type="PackedScene" uid="uid://cdbsdv6gi1k0g" path="res://scenes/enemies/BasicEnemy.tscn" id="4_bsx1b"]
 [ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://src/Hud.gd" id="5_ladvl"]
 [ext_resource type="PackedScene" uid="uid://dhic07exb4uhr" path="res://scenes/ui/TowerUpgradeMenu.tscn" id="6_n8iyc"]
 [ext_resource type="Script" uid="uid://djg5lxas2wk88" path="res://src/ui/ScalableCamera2D.gd" id="9_68xhw"]
@@ -104,7 +104,6 @@ script = ExtResource("9_68xhw")
 script = ExtResource("5_ladvl")
 
 [node name="LivesLabel" type="Label" parent="HUD"]
-anchors_preset = -1
 offset_top = 999.515
 offset_right = 302.0
 offset_bottom = 1049.52
@@ -114,7 +113,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CurrencyLabel" type="Label" parent="HUD"]
 anchors_preset = -1
-anchor_left = 0.000219027
+anchor_left = -0.0409268
 anchor_top = 0.000418882
 anchor_right = -0.0409268
 anchor_bottom = 0.000418882
