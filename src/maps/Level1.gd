@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var build_tower_button: Button = $HUD/BuildTowerButton
-@onready var towers_container: Node2D = $TowersContainer
+@onready var towers_container: Node2D = $World/TowersContainer
 @onready var upgrade_menu: Control = $HUD/TowerUpgradeMenu
 
 
