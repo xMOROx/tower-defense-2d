@@ -1,17 +1,11 @@
 extends Node
 
-@export var enemy_scene: PackedScene = null 
 @export var enemy_path_nodepath: NodePath = NodePath()
 
 var path_node: Path2D = null
 
 
 func _ready():
-	if enemy_scene == null:
-		printerr("Spawner Error: Enemy Scene not set in the inspector!")
-		set_process(false) 
-		return
-
 	if enemy_path_nodepath.is_empty():
 		printerr("Spawner Error: Enemy Path NodePath not set in the inspector!")
 		set_process(false)
@@ -29,7 +23,6 @@ func _ready():
 		return
 
 	
-	print("Spawner ready. Enemy scene: ", enemy_scene.resource_path)
 	print("Spawner path: ", path_node.name)
 
 
