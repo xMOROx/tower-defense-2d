@@ -139,26 +139,33 @@ func check_placement_validity():
 func try_place_tower():
 	if not is_building or not is_instance_valid(tower_preview_instance): return
 	
-	check_placement_validity()
+	check_placement_validity() 
 
 	if placement_valid:
-		if GameManager.spend_currency(basic_tower_cost):
+		if GameManager.spend_currency(basic_tower_cost): 
 			print("Placing tower!")
-			var new_tower = building_tower_scene.instantiate()
+			var new_tower = building_tower_scene.instantiate() 
 			
 			towers_container.add_child(new_tower)
 			new_tower.global_position = tower_preview_instance.global_position
 
+			if new_tower is BaseTower:
+				new_tower.set_placed()
+				print("Level1: Called set_placed() on '", new_tower.name, "'")
+			else:
+				printerr("Level1 Error: Instantiated tower '", new_tower.name, "' is not derived from BaseTower!")
+			# ---------------------------------------------
+
 			if new_tower.has_signal("show_upgrade_menu"):
 				new_tower.show_upgrade_menu.connect(_on_tower_show_upgrade_menu)
 			else:
-				printerr("Placed tower is missing 'show_upgrade_menu' signal!")
+				printerr("Placed tower '", new_tower.name, "' is missing 'show_upgrade_menu' signal!")
 
 			cancel_building()
 		else:
 			print("Placement failed: Could not spend currency.")
 			# TODO: Play sound
-			cancel_building()
+			cancel_building() 
 	else:
 		print("Cannot place tower here (invalid location).")
 		# TODO: Play sound
