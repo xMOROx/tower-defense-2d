@@ -3,11 +3,11 @@
 [ext_resource type="Script" uid="uid://djvuwq56jqhf1" path="res://src/maps/Level1.gd" id="1_55yl8"]
 [ext_resource type="TileSet" uid="uid://clhx4yx22v4j6" path="res://assets/tiles/terrain.tres" id="1_63i5o"]
 [ext_resource type="PackedScene" uid="uid://dypncu8rnysyf" path="res://scenes/enemies/WaveManager.tscn" id="2_55yl8"]
-[ext_resource type="PackedScene" uid="uid://dsdhiykb81bg" path="res://scenes/towers/tower.tscn" id="2_vkvtd"]
+[ext_resource type="PackedScene" uid="uid://dsdhiykb81bg" path="res://scenes/towers/ProjectileTower.tscn" id="2_vkvtd"]
 [ext_resource type="Script" uid="uid://dadif0l11mskl" path="res://src/Spawner.gd" id="3_tuf7a"]
 [ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://src/Hud.gd" id="5_ladvl"]
 [ext_resource type="PackedScene" uid="uid://dhic07exb4uhr" path="res://scenes/ui/TowerUpgradeMenu.tscn" id="6_n8iyc"]
-[ext_resource type="Script" path="res://src/ui/ScalableCamera2D.gd" id="9_68xhw"]
+[ext_resource type="Script" uid="uid://djg5lxas2wk88" path="res://src/ui/ScalableCamera2D.gd" id="9_68xhw"]
 
 [sub_resource type="Curve2D" id="Curve2D_jclyi"]
 _data = {
