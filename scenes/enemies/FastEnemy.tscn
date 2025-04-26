@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bybvvms7yxge2"]
 
-[ext_resource type="Script" uid="uid://byldekchhn1ii" path="res://src/Enemy.gd" id="1_varen"]
+[ext_resource type="Script" uid="uid://bl21ihpmfp1pe" path="res://src/enemies/BaseEnemy.gd" id="1_varen"]
 [ext_resource type="Texture2D" uid="uid://c0x2mx1blwlwl" path="res://assets/graphics/towerDefense_tilesheet.png" id="2_cxpms"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_orwns"]
@@ -25,9 +25,6 @@ collision_layer = 2
 collision_mask = 0
 input_pickable = true
 script = ExtResource("1_varen")
-speed = 130.0
-max_health = 7.0
-currency_reward = 6
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cxpms")
