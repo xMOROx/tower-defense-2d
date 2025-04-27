@@ -137,9 +137,6 @@ func _on_intermission_timer_timeout():
 
 func _start_next_wave():
 	current_wave_index += 1
-	if current_wave_index >= _processed_wave_definitions.size():
-		_all_waves_completed()
-		return
 
 	current_state = State.SPAWNING
 	GameManager.set_wave(current_wave_index + 1)
@@ -232,10 +229,15 @@ func _on_enemy_removed(_enemy):
 func _wave_cleared():
 	print("WaveManager: Wave ", GameManager.get_current_wave(), " cleared!")
 	emit_signal("wave_cleared", GameManager.get_current_wave())
-	_start_intermission()
+	if current_wave_index >= _processed_wave_definitions.size() - 1:
+		_all_waves_completed()
+		return
+	else:
+		_start_intermission()
 
 
 func _all_waves_completed():
 	print("WaveManager: All waves completed! VICTORY!")
 	current_state = State.FINISHED
 	emit_signal("all_waves_completed")
+	GameManager.level_completed()

@@ -73,3 +73,8 @@ func reset_game():
 func game_over():
 	print("GAME OVER!")
 	SceneManager.goto_game_over()
+	
+# --- Level Completion ---
+func level_completed():
+	print("LEVEL COMPLETE!")
+	SceneManager.goto_level_winner()

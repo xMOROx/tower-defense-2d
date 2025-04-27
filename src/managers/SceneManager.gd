@@ -3,6 +3,7 @@ extends Control
 var main_menu_path = "res://scenes/ui/MainMenu.tscn"
 var level_select_path = "res://scenes/ui/LevelSelect.tscn"
 var game_over_path = "res://scenes/ui/GameOver.tscn"
+var level_winner_path = "res://scenes/ui/LevelWinner.tscn"
 
 
 var current_scene_node: Node = null
@@ -20,6 +21,9 @@ func goto_level_select():
 	
 func goto_game_over():
 	_change_scene(game_over_path)
+
+func goto_level_winner():
+	_change_scene(level_winner_path)
 
 func goto_level(level_scene_path: String):
 	if level_scene_path.is_empty() or not ResourceLoader.exists(level_scene_path):
