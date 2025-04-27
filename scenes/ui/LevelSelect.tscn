@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dd05v5twofsm7"]
+[gd_scene load_steps=8 format=3 uid="uid://dd05v5twofsm7"]
 
 [ext_resource type="Script" uid="uid://co5o5votboo4r" path="res://src/ui/LevelSelect.gd" id="1_kj5cj"]
 [ext_resource type="Texture2D" uid="uid://cyg71x0tehglf" path="res://assets/ui/Background/Default.png" id="2_kwsq8"]
 [ext_resource type="Texture2D" uid="uid://syky7sh20v5m" path="res://assets/ui/Buttons/Square/Home/Default.png" id="3_kgix2"]
-[ext_resource type="Texture2D" uid="uid://vjruocs4l2m4" path="res://assets/ui/Level/Button/WithStars.png" id="4_wtv7g"]
+[ext_resource type="Texture2D" uid="uid://cnvq0wgaq04g6" path="res://assets/ui/Level/Button/Dummy.png" id="4_kj5cj"]
 [ext_resource type="FontFile" uid="uid://crg0iil34cmrw" path="res://assets/fonts/Bungee-Regular.otf" id="5_ourel"]
 [ext_resource type="Texture2D" uid="uid://c8vtelxv3rum6" path="res://assets/ui/Star/Active.png" id="6_b8qwi"]
+[ext_resource type="Texture2D" uid="uid://bsu23ptltwj11" path="res://assets/ui/Level/Star/Group/0-3.png" id="6_kwsq8"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -43,7 +44,7 @@ theme_override_constants/separation = 60
 
 [node name="Level1" type="Button" parent="Levels/Row1"]
 layout_mode = 2
-icon = ExtResource("4_wtv7g")
+icon = ExtResource("4_kj5cj")
 flat = true
 
 [node name="Lavel1Label" type="Label" parent="Levels/Row1/Level1"]
@@ -57,9 +58,17 @@ theme_override_fonts/font = ExtResource("5_ourel")
 theme_override_font_sizes/font_size = 64
 text = "1"
 
+[node name="Stars" type="TextureRect" parent="Levels/Row1/Level1"]
+layout_mode = 0
+offset_left = 15.5078
+offset_top = 77.4188
+offset_right = 82.5078
+offset_bottom = 97.4188
+texture = ExtResource("6_kwsq8")
+
 [node name="Level2" type="Button" parent="Levels/Row1"]
 layout_mode = 2
-icon = ExtResource("4_wtv7g")
+icon = ExtResource("4_kj5cj")
 flat = true
 
 [node name="Lavel2Label" type="Label" parent="Levels/Row1/Level2"]
@@ -72,6 +81,13 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_ourel")
 theme_override_font_sizes/font_size = 64
 text = "2"
+
+[node name="Stars" type="TextureRect" parent="Levels/Row1/Level2"]
+offset_left = 15.5078
+offset_top = 77.4188
+offset_right = 82.5078
+offset_bottom = 97.4188
+texture = ExtResource("6_kwsq8")
 
 [node name="Score" type="HBoxContainer" parent="."]
 layout_mode = 0

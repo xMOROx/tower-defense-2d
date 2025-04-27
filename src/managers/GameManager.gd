@@ -82,7 +82,8 @@ func game_over():
 func level_completed():
 	print("LEVEL COMPLETE!")
 	var stars = _compute_stars()
-	SceneManager.goto_level_winner(stars) # Pass the number of stars to the winner screen
+	StateManager.save_level_stars(SceneManager.get_last_played_level_path(), stars)
+	SceneManager.goto_level_winner(stars)
 
 func _compute_stars() -> int:
 	var percentage_lives_remaining = float(current_lives) / MAX_LIVES

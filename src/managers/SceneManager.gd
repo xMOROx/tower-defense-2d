@@ -25,7 +25,7 @@ func goto_game_over():
 	_change_scene(game_over_path, false)
 
 func goto_level_winner(stars):
-	_change_scene(level_winner_path, false, , {"stars": stars})
+	_change_scene(level_winner_path, false, {"stars": stars})
 
 func goto_level(level_scene_path: String):
 	if level_scene_path.is_empty() or not ResourceLoader.exists(level_scene_path):
@@ -79,6 +79,10 @@ func _deferred_change_scene(scene_path: String, is_level: bool = false, data: Di
 		
 	if !data.is_empty() and is_instance_valid(current_scene_node) and current_scene_node.has_method("set_data"):
 		current_scene_node.call("set_data", data)	
+
+		
+func get_last_played_level_path() -> String:
+	return last_played_level_path
 
 func _add_pause_menu():
 	if pause_menu_instance == null and ResourceLoader.exists(pause_menu_path):

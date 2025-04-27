@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://src/managers/GameManager.gd"
 SceneManager="*res://src/managers/SceneManager.gd"
+StateManager="*res://src/managers/StateManager.gd"
 
 [display]
 
