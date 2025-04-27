@@ -24,8 +24,8 @@ func goto_level_select():
 func goto_game_over():
 	_change_scene(game_over_path, false)
 
-func goto_level_winner():
-	_change_scene(level_winner_path, false)
+func goto_level_winner(stars):
+	_change_scene(level_winner_path, false, , {"stars": stars})
 
 func goto_level(level_scene_path: String):
 	if level_scene_path.is_empty() or not ResourceLoader.exists(level_scene_path):
@@ -46,13 +46,13 @@ func retry_level():
 
 	print("SceneManager: Retrying level:", last_played_level_path)
 	_change_scene(last_played_level_path, true)
-	
-func _change_scene(scene_path: String, is_level: bool = false):
+
+func _change_scene(scene_path: String, is_level: bool = false, data: Dictionary = {}):
 	print("SceneManager: Changing scene to:", scene_path)
 
-	call_deferred("_deferred_change_scene", scene_path, is_level)
-
-func _deferred_change_scene(scene_path: String, is_level: bool = false):
+	call_deferred("_deferred_change_scene", scene_path, is_level, data)
+	
+func _deferred_change_scene(scene_path: String, is_level: bool = false, data: Dictionary = {}):
 	if is_instance_valid(current_scene_node):
 		current_scene_node.queue_free()
 		current_scene_node = null
@@ -76,6 +76,9 @@ func _deferred_change_scene(scene_path: String, is_level: bool = false):
 	get_tree().root.add_child(current_scene_node)
 	if is_level:
 		_add_pause_menu()
+		
+	if !data.is_empty() and is_instance_valid(current_scene_node) and current_scene_node.has_method("set_data"):
+		current_scene_node.call("set_data", data)	
 
 func _add_pause_menu():
 	if pause_menu_instance == null and ResourceLoader.exists(pause_menu_path):

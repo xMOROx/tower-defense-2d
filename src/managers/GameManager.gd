@@ -81,4 +81,17 @@ func game_over():
 # --- Level Completion ---
 func level_completed():
 	print("LEVEL COMPLETE!")
-	SceneManager.goto_level_winner()
+	var stars = _compute_stars()
+	SceneManager.goto_level_winner(stars) # Pass the number of stars to the winner screen
+
+func _compute_stars() -> int:
+	var percentage_lives_remaining = float(current_lives) / MAX_LIVES
+
+	if percentage_lives_remaining == 1.0:
+		return 3
+	elif percentage_lives_remaining >= 0.75:
+		return 2
+	elif percentage_lives_remaining > 0.3:
+		return 1
+	else:
+		return 0
