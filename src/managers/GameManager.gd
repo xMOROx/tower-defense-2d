@@ -19,6 +19,10 @@ func _ready():
 	current_wave_number = 0
 	print("GameManager Ready. Lives:", current_lives, "Currency:", current_currency)
 
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		SceneManager.toggle_pause_menu()
+
 # --- Lives ---
 func lose_life():
 	if current_lives > 0:
