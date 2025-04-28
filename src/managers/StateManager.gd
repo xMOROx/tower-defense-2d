@@ -23,7 +23,7 @@ func save_game_progress():
 		printerr("StateManager Error: Error saving game progress to:", SAVE_FILE)
 
 func load_game_progress():
-	print("StateManager: Loading game progress from:", SAVE_FILE)
+	
 	var config = ConfigFile.new()
 	var err = config.load(SAVE_FILE)
 	if err == OK:
@@ -38,4 +38,4 @@ func load_game_progress():
 func reset_progress():
 	level_stars_data.clear()
 	save_game_progress()
-	print("StateManager: Game progress reset.")
+	

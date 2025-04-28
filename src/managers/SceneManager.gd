@@ -44,11 +44,11 @@ func retry_level():
 
 	GameManager.reset_game()
 
-	print("SceneManager: Retrying level:", last_played_level_path)
+	
 	_change_scene(last_played_level_path, true)
 
 func _change_scene(scene_path: String, is_level: bool = false, data: Dictionary = {}):
-	print("SceneManager: Changing scene to:", scene_path)
+	
 
 	call_deferred("_deferred_change_scene", scene_path, is_level, data)
 	

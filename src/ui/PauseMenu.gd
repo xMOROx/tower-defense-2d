@@ -16,4 +16,4 @@ func _on_main_menu_button_pressed():
 	SceneManager.goto_main_menu()
 	
 func _on_settings_button_pressed():	
-	print("PauseMenu: Settings button pressed")
+	pass

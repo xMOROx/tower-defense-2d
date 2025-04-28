@@ -12,14 +12,14 @@ func _ready():
 	retry_button.grab_focus()
 
 func _on_retry_button_pressed():
-	print("GameOver: Retry button pressed")
+	
 	SceneManager.retry_level()
 
 func _on_level_button_pressed():
-	print("GameOver: Level button pressed")
+	
 	GameManager.reset_game()
 	SceneManager.goto_level_select()
 
 func _on_exit_button_pressed():
-	print("GameOver: Exit button pressed")
+	
 	get_tree().quit()

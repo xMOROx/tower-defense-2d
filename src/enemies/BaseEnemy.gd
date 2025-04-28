@@ -19,7 +19,6 @@ var path_progress: float = 0.0
 
 @onready var health_bar: ProgressBar = $HealthBar
 
-
 func _ready():
 	set_physics_process(false)
 	
@@ -66,7 +65,6 @@ func set_path(new_path: Path2D):
 		printerr("Path curve has no points!")
 		queue_free()
 
-
 func _process(delta):
 	if path_curve == null:
 		return
@@ -76,7 +74,7 @@ func _process(delta):
 	var path_length = path_curve.get_baked_length()
 
 	if path_progress >= path_length:
-			print(name, "leaked.")
+			
 			GameManager.lose_life()
 			emit_signal("leaked", self)
 			queue_free()
@@ -88,7 +86,7 @@ func _process(delta):
 	
 func take_damage(amount: float):
 	current_health -= amount
-	print(name + " took " + str(amount) + " damage. HP left: " + str(current_health))
+	
 
 	# Optional: Add visual feedback like flashing red here later
 
@@ -103,12 +101,11 @@ func take_damage(amount: float):
 		die()
 
 func die():
-	print(name, "died.")
+	
 	GameManager.add_currency(currency_reward)
 	if health_bar: health_bar.visible = false
 	emit_signal("died", self)
 	call_deferred("queue_free")
-
 
 func get_path_progress() -> float:
 	return path_progress

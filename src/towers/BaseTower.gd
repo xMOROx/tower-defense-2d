@@ -87,7 +87,6 @@ func _get_valid_targets_in_range() -> Array[Node2D]:
 			valid_targets.append(body)
 	return valid_targets
 
-
 func _select_best_target(valid_targets: Array[Node2D]) -> Node2D:
 	if valid_targets.is_empty():
 		return null

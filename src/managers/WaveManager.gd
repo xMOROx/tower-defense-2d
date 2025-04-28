@@ -37,7 +37,7 @@ func _ready():
 	intermission_timer.timeout.connect(_on_intermission_timer_timeout)
 	spawn_timer.timeout.connect(_spawn_next_enemy)
 	
-	print("WaveManager Ready. Loaded", _processed_wave_definitions.size(), "waves from", wave_data_file)
+	
 	_start_intermission()
 
 func _validate_dependencies() -> bool:
@@ -122,7 +122,6 @@ func _load_and_process_wave_data() -> bool:
 		
 	return true
 
-
 func _start_intermission():
 	current_state = State.INTERMISSION
 	intermission_timer.wait_time = intermission_duration
@@ -130,10 +129,8 @@ func _start_intermission():
 	emit_signal("intermission_started", intermission_duration)
 	GameManager.set_wave(current_wave_index + 1)
 
-
 func _on_intermission_timer_timeout():
 	_start_next_wave()
-
 
 func _start_next_wave():
 	current_wave_index += 1
@@ -159,9 +156,8 @@ func _start_next_wave():
 	enemies_spawned_this_wave = 0
 	current_spawn_group_index = 0
 	
-	print("WaveManager: Starting Wave ", GameManager.get_current_wave(), " (", current_wave_def.get("wave_name", "Unnamed"), ") with ", total_enemies_this_wave, " enemies.")
+	
 	_trigger_next_spawn_group()
-
 
 func _trigger_next_spawn_group():
 	if current_spawn_group_index >= wave_spawn_data.size():
@@ -209,11 +205,9 @@ func _spawn_next_enemy():
 	if more_enemies_in_wave:
 		_trigger_next_spawn_group()
 	else:
-		print("WaveManager: All enemies for wave ", GameManager.get_current_wave(), " triggered for spawning.")
 		current_state = State.WAVE_ACTIVE
 		if enemies_alive_this_wave <= 0:
 			_wave_cleared()
-
 
 func _on_enemy_removed(_enemy):
 	if current_state == State.SPAWNING or current_state == State.WAVE_ACTIVE:
@@ -225,9 +219,8 @@ func _on_enemy_removed(_enemy):
 			printerr("WaveManager Warning: enemies_alive_this_wave count went below zero!")
 			enemies_alive_this_wave = 0
 
-
 func _wave_cleared():
-	print("WaveManager: Wave ", GameManager.get_current_wave(), " cleared!")
+	
 	emit_signal("wave_cleared", GameManager.get_current_wave())
 	if current_wave_index >= _processed_wave_definitions.size() - 1:
 		_all_waves_completed()
@@ -235,9 +228,8 @@ func _wave_cleared():
 	else:
 		_start_intermission()
 
-
 func _all_waves_completed():
-	print("WaveManager: All waves completed! VICTORY!")
+	
 	current_state = State.FINISHED
 	emit_signal("all_waves_completed")
 	GameManager.level_completed()

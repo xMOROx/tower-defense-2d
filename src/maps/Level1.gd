@@ -4,7 +4,6 @@ extends Node2D
 @onready var towers_container: Node2D = $World/TowersContainer
 @onready var upgrade_menu: Control = $HUD/TowerUpgradeMenu
 
-
 # --- Export Tower Data ---
 @export var basic_tower_scene: PackedScene = null
 @export var basic_tower_cost: int = 50
@@ -66,7 +65,7 @@ func clear_all_towers():
 				tower.show_upgrade_menu.disconnect(_on_tower_show_upgrade_menu)
 			tower.queue_free()
 	
-	print("Level1: All towers cleared")
+	
 
 # --- Input Handling ---
 func _input(event):
@@ -84,7 +83,6 @@ func _input(event):
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.is_pressed():
 			cancel_building()
 
-
 # --- Building Logic ---
 func _on_build_tower_button_pressed():
 	if is_building:
@@ -92,11 +90,11 @@ func _on_build_tower_button_pressed():
 		return
 		
 	if not GameManager.can_afford(basic_tower_cost):
-		print("Cannot afford tower!")
+		
 		# TODO: Play sound effect
 		return
 
-	print("Starting tower build process...")
+	
 	is_building = true
 	building_tower_scene = basic_tower_scene
 	
@@ -125,7 +123,6 @@ func check_placement_validity():
 	var preview_area = tower_preview_instance.find_child("PlacementArea", true, false)
 	if not preview_area is Area2D: return
 
-
 	var overlapping_areas = preview_area.get_overlapping_areas()
 	
 	placement_valid = overlapping_areas.is_empty()
@@ -135,7 +132,6 @@ func check_placement_validity():
 	else:
 		tower_preview_instance.modulate = PLACEMENT_INVALID_COLOR
 
-
 func try_place_tower():
 	if not is_building or not is_instance_valid(tower_preview_instance): return
 	
@@ -143,7 +139,7 @@ func try_place_tower():
 
 	if placement_valid:
 		if GameManager.spend_currency(basic_tower_cost): 
-			print("Placing tower!")
+			
 			var new_tower = building_tower_scene.instantiate() 
 			
 			towers_container.add_child(new_tower)
@@ -151,7 +147,7 @@ func try_place_tower():
 
 			if new_tower is BaseTower:
 				new_tower.set_placed()
-				print("Level1: Called set_placed() on '", new_tower.name, "'")
+				
 			else:
 				printerr("Level1 Error: Instantiated tower '", new_tower.name, "' is not derived from BaseTower!")
 			# ---------------------------------------------
@@ -163,16 +159,12 @@ func try_place_tower():
 
 			cancel_building()
 		else:
-			print("Placement failed: Could not spend currency.")
+			
 			# TODO: Play sound
 			cancel_building() 
-	else:
-		print("Cannot place tower here (invalid location).")
-		# TODO: Play sound
-
 
 func cancel_building():
-	print("Cancelling build process.")
+	
 	if is_instance_valid(tower_preview_instance):
 		tower_preview_instance.queue_free()
 	
@@ -181,7 +173,6 @@ func cancel_building():
 	is_building = false
 	
 	set_process_input(false)
-
 
 # --- Signal Handlers ---
 

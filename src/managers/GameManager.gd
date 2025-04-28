@@ -17,7 +17,7 @@ func _ready():
 	current_lives = MAX_LIVES
 	current_currency = 100
 	current_wave_number = 0
-	print("GameManager Ready. Lives:", current_lives, "Currency:", current_currency)
+	
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
@@ -51,7 +51,7 @@ func spend_currency(cost: int) -> bool:
 func set_wave(wave_num: int):
 	current_wave_number = wave_num
 	emit_signal("wave_changed", current_wave_number)
-	print("GameManager: Wave set to", current_wave_number)
+	
 
 func get_current_wave() -> int:
 	return current_wave_number
@@ -71,16 +71,16 @@ func reset_game():
 	emit_signal("currency_changed", current_currency)
 	emit_signal("wave_changed", current_wave_number)
 	
-	print("GameManager: Game state reset to initial values")
+	
 
 # --- Game Over ---
 func game_over():
-	print("GAME OVER!")
+	
 	SceneManager.goto_game_over()
 	
 # --- Level Completion ---
 func level_completed():
-	print("LEVEL COMPLETE!")
+	
 	var stars = _compute_stars()
 	StateManager.save_level_stars(SceneManager.get_last_played_level_path(), stars)
 	SceneManager.goto_level_winner(stars)
