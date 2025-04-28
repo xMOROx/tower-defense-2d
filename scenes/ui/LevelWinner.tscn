@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://djity5wr2qkei"]
+
+[ext_resource type="Script" uid="uid://d162os088tlcr" path="res://src/ui/LevelWinner.gd" id="1_y15d3"]
+[ext_resource type="Texture2D" uid="uid://dkjt7kwibfd86" path="res://assets/ui/Background/Shadow.png" id="2_xgyu6"]
+[ext_resource type="Texture2D" uid="uid://jeylcyhvlt2s" path="res://assets/ui/Buttons/Square/Repeat/Default.png" id="3_1q2vd"]
+[ext_resource type="Texture2D" uid="uid://c8vtelxv3rum6" path="res://assets/ui/Star/Active.png" id="4_obggx"]
+[ext_resource type="Texture2D" uid="uid://cc77m5nklqm6f" path="res://assets/ui/Buttons/Square/Levels/Default.png" id="4_sobie"]
+[ext_resource type="FontFile" uid="uid://crg0iil34cmrw" path="res://assets/fonts/Bungee-Regular.otf" id="7_028wy"]
+
+[node name="LevelWinner" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_y15d3")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_xgyu6")
+expand_mode = 1
+
+[node name="VictoryLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 766.804
+offset_top = 298.584
+offset_right = 1104.8
+offset_bottom = 355.584
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_028wy")
+theme_override_font_sizes/font_size = 56
+text = "Victory!"
+horizontal_alignment = 1
+
+[node name="LevelNameLabel" type="Label" parent="VictoryLabel"]
+layout_mode = 0
+offset_left = 60.1957
+offset_top = 109.027
+offset_right = 398.196
+offset_bottom = 166.027
+scale = Vector2(0.645786, 0.645786)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_028wy")
+theme_override_font_sizes/font_size = 56
+text = "Level: 1"
+horizontal_alignment = 1
+
+[node name="Stars" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 766.804
+offset_top = 513.741
+offset_right = 1122.8
+offset_bottom = 605.741
+theme_override_constants/separation = 40
+
+[node name="Star1" type="TextureRect" parent="Stars"]
+layout_mode = 2
+texture = ExtResource("4_obggx")
+
+[node name="Star2" type="TextureRect" parent="Stars"]
+layout_mode = 2
+texture = ExtResource("4_obggx")
+
+[node name="Star3" type="TextureRect" parent="Stars"]
+layout_mode = 2
+texture = ExtResource("4_obggx")
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 827.0
+offset_top = 694.441
+offset_right = 1051.0
+offset_bottom = 786.441
+theme_override_constants/separation = 40
+
+[node name="Retry" type="Button" parent="Buttons"]
+layout_mode = 2
+icon = ExtResource("3_1q2vd")
+flat = true
+
+[node name="Levels" type="Button" parent="Buttons"]
+layout_mode = 2
+icon = ExtResource("4_sobie")
+flat = true
