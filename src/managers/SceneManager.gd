@@ -4,23 +4,25 @@ var main_menu_path = "res://scenes/ui/MainMenu.tscn"
 var level_select_path = "res://scenes/ui/LevelSelect.tscn"
 var game_over_path = "res://scenes/ui/GameOver.tscn"
 var level_winner_path = "res://scenes/ui/LevelWinner.tscn"
-
+var pause_menu_path = "res://scenes/ui/PauseMenu.tscn" # Path to your PauseMenu scene
 
 var current_scene_node: Node = null
 var last_played_level_path: String = ""
+var pause_menu_instance: Node = null
+var is_game_paused: bool = false
 
 func _ready():
 	var root = get_tree().root
 	current_scene_node = root.get_child(root.get_child_count() - 1)
 
 func goto_main_menu():
-	_change_scene(main_menu_path)
+	_change_scene(main_menu_path, false)
 
 func goto_level_select():
-	_change_scene(level_select_path)
+	_change_scene(level_select_path, false)
 	
 func goto_game_over():
-	_change_scene(game_over_path)
+	_change_scene(game_over_path, false)
 
 func goto_level_winner():
 	_change_scene(level_winner_path)
@@ -32,31 +34,30 @@ func goto_level(level_scene_path: String):
 		return
 		
 	last_played_level_path = level_scene_path
-	_change_scene(level_scene_path)
+	_change_scene(level_scene_path, true)
 
 func retry_level():
 	if last_played_level_path.is_empty():
 		printerr("SceneManager Error: No level path stored to retry!")
 		goto_main_menu()
 		return
-	
-	GameManager.reset_game()
-	
-	print("SceneManager: Retrying level:", last_played_level_path)
-	_change_scene(last_played_level_path)
 
-func _change_scene(scene_path: String):
+	GameManager.reset_game()
+
+	print("SceneManager: Retrying level:", last_played_level_path)
+	_change_scene(last_played_level_path, true)
+	
+func _change_scene(scene_path: String, is_level: bool = false):
 	print("SceneManager: Changing scene to:", scene_path)
 
-	if scene_path == main_menu_path or scene_path == level_select_path:
-		pass
+	call_deferred("_deferred_change_scene", scene_path, is_level)
 
-	call_deferred("_deferred_change_scene", scene_path)
-
-func _deferred_change_scene(scene_path: String):
+func _deferred_change_scene(scene_path: String, is_level: bool = false):
 	if is_instance_valid(current_scene_node):
 		current_scene_node.queue_free()
 		current_scene_node = null
+
+	_remove_pause_menu()
 
 	var next_scene_res = ResourceLoader.load(scene_path)
 	if next_scene_res == null:
@@ -73,3 +74,41 @@ func _deferred_change_scene(scene_path: String):
 		return
 
 	get_tree().root.add_child(current_scene_node)
+	if is_level:
+		_add_pause_menu()
+
+func _add_pause_menu():
+	if pause_menu_instance == null and ResourceLoader.exists(pause_menu_path):
+		var pause_scene = ResourceLoader.load(pause_menu_path)
+		if pause_scene:
+			pause_menu_instance = pause_scene.instantiate()
+			if current_scene_node.get_node("HUD"):
+				current_scene_node.get_node("HUD").add_child(pause_menu_instance)
+			else:
+				printerr("SceneManager Error: Current scene does not have a HUD node.")
+				return
+			pause_menu_instance.visible = false # Initially hidden
+		else:
+			printerr("SceneManager Error: Failed to load PauseMenu scene.")
+
+func _remove_pause_menu():
+	if is_instance_valid(pause_menu_instance):
+		pause_menu_instance.queue_free()
+		pause_menu_instance = null
+		get_tree().paused = false
+		is_game_paused = false
+
+func toggle_pause_menu():
+	if pause_menu_instance == null:
+		return # this is not pausable scene
+
+	is_game_paused = !is_game_paused
+	get_tree().paused = is_game_paused
+	if is_instance_valid(pause_menu_instance):
+		pause_menu_instance.visible = is_game_paused
+
+func _on_resume_game():
+	toggle_pause_menu()
+
+func _on_quit_to_menu():
+	goto_main_menu()

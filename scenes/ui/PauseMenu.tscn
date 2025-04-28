@@ -1,0 +1,159 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwn7xucb2vqkr"]
+
+[ext_resource type="Script" uid="uid://bk412oi4pteis" path="res://src/ui/PauseMenu.gd" id="1_rw35d"]
+[ext_resource type="Texture2D" uid="uid://d1erk6d0yg0ek" path="res://assets/ui/Background/Vector/Forest.png" id="2_kncl5"]
+[ext_resource type="Texture2D" uid="uid://cep726f8mgaxb" path="res://assets/ui/Logotype/ButtonBack.png" id="3_clp4r"]
+[ext_resource type="Texture2D" uid="uid://deu4w506i5xnc" path="res://assets/ui/Button/Rect/Fill/Default@2x1.png" id="4_rw35d"]
+[ext_resource type="FontFile" uid="uid://crg0iil34cmrw" path="res://assets/fonts/Bungee-Regular.otf" id="5_qjd48"]
+[ext_resource type="Texture2D" uid="uid://ha7txee8no8o" path="res://assets/ui/Logotype/Back.png" id="6_ff4wq"]
+[ext_resource type="Texture2D" uid="uid://ciopj22wymlcd" path="res://assets/ui/Logotype/NameBack.png" id="7_nqw28"]
+[ext_resource type="Texture2D" uid="uid://chmk7abvx17df" path="res://assets/ui/Logotype/Arrow.png" id="8_7uy2f"]
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_rw35d")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_kncl5")
+expand_mode = 1
+flip_h = true
+
+[node name="ButtonBush" type="TextureRect" parent="Background"]
+visible = false
+layout_mode = 0
+offset_left = 558.0
+offset_top = 302.0
+offset_right = 1261.0
+offset_bottom = 715.0
+texture = ExtResource("3_clp4r")
+expand_mode = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Background"]
+layout_mode = 0
+offset_left = 711.0
+offset_top = 372.0
+offset_right = 1111.0
+offset_bottom = 656.0
+
+[node name="ResumeButton" type="Button" parent="Background/Buttons"]
+layout_mode = 2
+icon = ExtResource("4_rw35d")
+flat = true
+
+[node name="ResumeLabel" type="Label" parent="Background/Buttons/ResumeButton"]
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 388.0
+offset_bottom = 74.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.960784, 0.486275, 0, 1)
+theme_override_fonts/font = ExtResource("5_qjd48")
+theme_override_font_sizes/font_size = 48
+text = "RESUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="Button" parent="Background/Buttons"]
+layout_mode = 2
+icon = ExtResource("4_rw35d")
+flat = true
+
+[node name="SettingsLabel" type="Label" parent="Background/Buttons/SettingsButton"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 388.0
+offset_bottom = 74.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.960784, 0.486275, 0, 1)
+theme_override_fonts/font = ExtResource("5_qjd48")
+theme_override_font_sizes/font_size = 48
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="Background/Buttons"]
+layout_mode = 2
+icon = ExtResource("4_rw35d")
+flat = true
+
+[node name="MainMenuLabel" type="Label" parent="Background/Buttons/MainMenuButton"]
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 388.0
+offset_bottom = 74.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.960784, 0.486275, 0, 1)
+theme_override_fonts/font = ExtResource("5_qjd48")
+theme_override_font_sizes/font_size = 48
+text = "MAIN MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bush" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.495
+anchor_top = 0.292
+anchor_right = 0.495
+anchor_bottom = 0.292
+offset_left = -474.4
+offset_top = -234.36
+offset_right = 369.6
+offset_bottom = 69.64
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_ff4wq")
+expand_mode = 1
+
+[node name="TextBackground" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_left = 644.0
+offset_top = 133.0
+offset_right = 1173.0
+offset_bottom = 279.0
+texture = ExtResource("7_nqw28")
+expand_mode = 1
+flip_h = true
+
+[node name="Arrow" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 77.0
+offset_right = 531.0
+offset_bottom = 254.0
+rotation = -0.760964
+texture = ExtResource("8_7uy2f")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Arrow2" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_left = 428.0
+offset_top = 185.0
+offset_right = 481.0
+offset_bottom = 382.0
+rotation = -1.14145
+texture = ExtResource("8_7uy2f")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Title" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 672.0
+offset_top = 175.0
+offset_right = 1151.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_qjd48")
+theme_override_font_sizes/font_size = 56
+text = "PAUSED"
+horizontal_alignment = 1

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cdbsdv6gi1k0g"]
 
-[ext_resource type="Script" uid="uid://byldekchhn1ii" path="res://src/Enemy.gd" id="1_7frlh"]
+[ext_resource type="Script" uid="uid://bl21ihpmfp1pe" path="res://src/enemies/BaseEnemy.gd" id="1_he4gj"]
 [ext_resource type="Texture2D" uid="uid://c0x2mx1blwlwl" path="res://assets/graphics/towerDefense_tilesheet.png" id="2_7frlh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_orwns"]
@@ -24,7 +24,7 @@ corner_radius_bottom_left = 7
 collision_layer = 2
 collision_mask = 0
 input_pickable = true
-script = ExtResource("1_7frlh")
+script = ExtResource("1_he4gj")
 speed = 80.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
