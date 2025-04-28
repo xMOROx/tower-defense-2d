@@ -108,3 +108,7 @@ func die():
 	if health_bar: health_bar.visible = false
 	emit_signal("died", self)
 	call_deferred("queue_free")
+
+
+func get_path_progress() -> float:
+	return path_progress
