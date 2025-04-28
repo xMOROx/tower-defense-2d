@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dsdhiykb81bg" path="res://scenes/towers/ProjectileTower.tscn" id="2_vkvtd"]
 [ext_resource type="Script" uid="uid://dadif0l11mskl" path="res://src/Spawner.gd" id="3_tuf7a"]
 [ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://src/Hud.gd" id="5_ladvl"]
+[ext_resource type="Script" uid="uid://d2potcvpfge7f" path="res://src/spawners/BaseSpawner.gd" id="5_prr5q"]
 [ext_resource type="PackedScene" uid="uid://dhic07exb4uhr" path="res://scenes/ui/TowerUpgradeMenu.tscn" id="6_n8iyc"]
 [ext_resource type="Script" uid="uid://djg5lxas2wk88" path="res://src/ui/ScalableCamera2D.gd" id="9_68xhw"]
 
@@ -54,7 +55,7 @@ wave_data_file = "res://assets/waves/map1.json"
 [node name="EnemySpawner" type="Node2D" parent="World"]
 position = Vector2(-2, 127.548)
 scale = Vector2(25.1814, -45.4777)
-script = ExtResource("3_tuf7a")
+script = ExtResource("5_prr5q")
 enemy_path_nodepath = NodePath("../EnemyPath")
 
 [node name="EnemyContainer" type="Node" parent="World/EnemySpawner"]
