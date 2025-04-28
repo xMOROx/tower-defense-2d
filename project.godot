@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*res://src/managers/GameManager.gd"
 SceneManager="*res://src/managers/SceneManager.gd"
+StateManager="*res://src/managers/StateManager.gd"
 
 [display]
 
@@ -27,6 +28,10 @@ window/size/viewport_height=1080
 window/size/mode=3
 window/size/borderless=true
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/helpers/plugin.cfg")
 
 [global_group]
 

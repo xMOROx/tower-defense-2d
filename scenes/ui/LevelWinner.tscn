@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://djity5wr2qkei"]
+[gd_scene load_steps=7 format=3 uid="uid://cc8j8pmtmgibk"]
 
 [ext_resource type="Script" uid="uid://d162os088tlcr" path="res://src/ui/LevelWinner.gd" id="1_y15d3"]
 [ext_resource type="Texture2D" uid="uid://dkjt7kwibfd86" path="res://assets/ui/Background/Shadow.png" id="2_xgyu6"]
