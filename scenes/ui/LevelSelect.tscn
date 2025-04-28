@@ -83,6 +83,7 @@ theme_override_font_sizes/font_size = 64
 text = "2"
 
 [node name="Stars" type="TextureRect" parent="Levels/Row1/Level2"]
+layout_mode = 0
 offset_left = 15.5078
 offset_top = 77.4188
 offset_right = 82.5078
