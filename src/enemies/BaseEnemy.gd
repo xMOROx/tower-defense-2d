@@ -1,3 +1,4 @@
+class_name BaseEnemy
 extends CharacterBody2D
 
 signal died(enemy_instance)
@@ -42,7 +43,7 @@ func set_path(new_path: Path2D):
 	
 	path_progress = 0.0
 	
-	path_curve.bake_interval = 5
+	path_curve.bake_interval = 5 # Adjust as needed for smoothness vs performance
 	
 	if path_curve.get_point_count() > 0:
 		current_health = max_health
@@ -60,7 +61,7 @@ func set_path(new_path: Path2D):
 		global_position = path_curve.sample_baked(0.0)
 		visible = true
 		set_process(true)
-		set_physics_process(false)
+		set_physics_process(false) # Not using physics movement
 	else:
 		printerr("Path curve has no points!")
 		queue_free()
@@ -105,5 +106,9 @@ func die():
 	print(name, "died.")
 	GameManager.add_currency(currency_reward)
 	if health_bar: health_bar.visible = false
-	died.emit(self)
+	emit_signal("died", self)
 	call_deferred("queue_free")
+
+
+func get_path_progress() -> float:
+	return path_progress
