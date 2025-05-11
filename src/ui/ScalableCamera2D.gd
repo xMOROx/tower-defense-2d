@@ -1,6 +1,6 @@
 extends Camera2D
 
-@onready var tilemap_layer = get_node("../Layer_ground")
+@onready var tilemap_layer = get_node("../Map/Layer_ground")
 
 func _ready():
 	var tile_set = tilemap_layer.tile_set

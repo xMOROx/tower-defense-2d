@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://d3o01x0ug76dm"]
+[gd_scene load_steps=17 format=4 uid="uid://d3o01x0ug76dm"]
 
 [ext_resource type="Script" uid="uid://djvuwq56jqhf1" path="res://src/maps/Level1.gd" id="1_55yl8"]
 [ext_resource type="TileSet" uid="uid://clhx4yx22v4j6" path="res://assets/tiles/terrain.tres" id="1_63i5o"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dsdhiykb81bg" path="res://scenes/towers/ProjectileTower.tscn" id="2_prr5q"]
 [ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://src/Hud.gd" id="5_ladvl"]
 [ext_resource type="Script" uid="uid://d2potcvpfge7f" path="res://src/spawners/BaseSpawner.gd" id="5_prr5q"]
+[ext_resource type="PackedScene" uid="uid://cpprkq5oeve7m" path="res://scenes/maps/paths/PathSegment.tscn" id="6_68xhw"]
 [ext_resource type="PackedScene" uid="uid://dhic07exb4uhr" path="res://scenes/ui/TowerUpgradeMenu.tscn" id="6_n8iyc"]
 [ext_resource type="Script" uid="uid://djg5lxas2wk88" path="res://src/ui/ScalableCamera2D.gd" id="9_68xhw"]
 
@@ -18,11 +19,11 @@ point_count = 34
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bwlk2"]
 size = Vector2(256, 109.667)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugr47"]
-size = Vector2(109.322, 383.21)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxa07"]
 size = Vector2(114, 376)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugr47"]
+size = Vector2(109.322, 383.21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prr5q"]
 size = Vector2(504.29, 106.007)
@@ -39,11 +40,13 @@ basic_tower_scene = ExtResource("2_prr5q")
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="Layer_ground" type="TileMapLayer" parent="World"]
+[node name="Map" type="Node2D" parent="World"]
+
+[node name="Layer_ground" type="TileMapLayer" parent="World/Map"]
 tile_map_data = PackedByteArray("AAAAAAAAAgABAAEAAAAAAAEAAgABAAIAAAAAAAIAAgABAAAAAAAAAAMAAgABAAEAAAAAAAQAAgABAAEAAAAAAAUAAgABAAEAAAAAAAYAAgABAAEAAAAAAAcAAgABAAEAAAAAAAgAAgABAAEAAAAAAAkAAgABAAEAAAABAAAAAgABAAEAAAABAAEAAgABAAIAAAABAAIAAgABAAAAAAABAAMAAgABAAEAAAABAAQAAgABAAoAAAABAAUAAgAOAAUAAAABAAYAAgABAAEAAAABAAcAAgAOAAUAAAABAAgAAgABAAoAAAABAAkAAgAOAAUAAAACAAAAAgABAAEAAAACAAEAAgABAAIAAAACAAIAAgACAAAAAAACAAMAAgACAAEAAAACAAQAAgACAAEAAAACAAUAAgACAAEAAAACAAYAAgACAAEAAAACAAcAAgACAAEAAAACAAgAAgADAAEAAAACAAkAAgAOAAUAAAADAAAAAgAOAAUAAAADAAEAAgAEAAAAAAADAAIAAgAAAAEAAAADAAMAAgAAAAEAAAADAAQAAgAAAAEAAAADAAUAAgAAAAEAAAADAAYAAgAAAAEAAAADAAcAAgAAAAIAAAADAAgAAgABAAAAAAADAAkAAgAOAAUAAAAEAAAAAgABAAoAAAAEAAEAAgABAAoAAAAEAAIAAgAOAAUAAAAEAAMAAgABAAEAAAAEAAQAAgAOAAUAAAAEAAUAAgABAAoAAAAEAAYAAgABAAoAAAAEAAcAAgABAAIAAAAEAAgAAgABAAAAAAAEAAkAAgABAAEAAAAFAAAAAgABAAoAAAAFAAEAAgAOAAUAAAAFAAIAAgABAAoAAAAFAAMAAgAOAAUAAAAFAAQAAgADAAAAAAAFAAUAAgACAAEAAAAFAAYAAgACAAEAAAAFAAcAAgACAAIAAAAFAAgAAgABAAAAAAAFAAkAAgABAAEAAAAGAAMAAgABAAEAAAAGAAQAAgABAAIAAAAGAAUAAgAAAAAAAAAGAAYAAgAAAAEAAAAGAAcAAgAAAAEAAAAGAAgAAgAEAAEAAAAGAAkAAgABAAoAAAAHAAMAAgABAAEAAAAHAAQAAgABAAIAAAAHAAUAAgABAAAAAAAHAAYAAgAOAAUAAAAHAAcAAgABAAEAAAAHAAgAAgABAAoAAAAHAAkAAgAOAAUAAAAIAAMAAgAOAAUAAAAIAAQAAgABAAIAAAAIAAUAAgABAAAAAAAIAAYAAgABAAoAAAAIAAcAAgABAAEAAAAIAAgAAgAOAAUAAAAIAAkAAgABAAEAAAAJAAAAAgABAAEAAAAJAAEAAgABAAoAAAAJAAMAAgAOAAUAAAAJAAQAAgABAAIAAAAJAAUAAgABAAAAAAAJAAYAAgABAAoAAAAJAAcAAgABAAoAAAAJAAgAAgAOAAUAAAAJAAkAAgABAAoAAAAKAAAAAgAOAAUAAAAKAAEAAgABAAEAAAAKAAMAAgABAAoAAAAKAAQAAgABAAIAAAAKAAUAAgABAAAAAAAKAAYAAgAOAAUAAAAKAAcAAgABAAEAAAAKAAgAAgABAAoAAAAKAAkAAgABAAEAAAALAAAAAgABAAoAAAALAAEAAgABAAEAAAALAAQAAgABAAIAAAALAAUAAgABAAAAAAALAAYAAgABAAoAAAALAAcAAgAOAAUAAAALAAgAAgABAAEAAAALAAkAAgABAAoAAAAMAAAAAgABAAEAAAAMAAEAAgABAAoAAAAMAAIAAgABAAoAAAAMAAMAAgABAAoAAAAMAAQAAgABAAIAAAAMAAUAAgABAAAAAAAMAAYAAgABAAEAAAAMAAcAAgABAAoAAAAMAAgAAgAOAAUAAAAMAAkAAgABAAEAAAANAAAAAgACAAEAAAANAAEAAgACAAEAAAANAAIAAgACAAEAAAANAAMAAgACAAEAAAANAAQAAgACAAIAAAANAAUAAgABAAAAAAANAAYAAgABAAEAAAANAAcAAgAOAAUAAAANAAgAAgABAAoAAAANAAkAAgABAAoAAAAOAAAAAgAAAAEAAAAOAAEAAgAAAAEAAAAOAAIAAgAAAAEAAAAOAAMAAgAAAAEAAAAOAAQAAgAAAAEAAAAOAAUAAgAEAAEAAAAOAAYAAgABAAoAAAAOAAcAAgABAAEAAAAOAAgAAgABAAEAAAAOAAkAAgABAAoAAAAPAAAAAgABAAEAAAAPAAEAAgABAAEAAAAPAAIAAgABAAoAAAAPAAMAAgABAAoAAAAPAAQAAgABAAEAAAAPAAUAAgAOAAUAAAAPAAYAAgAOAAUAAAAPAAcAAgABAAEAAAAPAAgAAgABAAEAAAAPAAkAAgAOAAUAAAAQAAAAAgABAAEAAAAQAAEAAgABAAoAAAAQAAIAAgABAAoAAAAQAAMAAgAOAAUAAAAQAAQAAgABAAEAAAAQAAUAAgABAAoAAAAQAAYAAgABAAoAAAAQAAcAAgABAAoAAAAQAAgAAgABAAEAAAAQAAkAAgABAAEAAAARAAAAAgAOAAUAAAARAAEAAgABAAEAAAARAAIAAgABAAoAAAARAAMAAgABAAoAAAARAAQAAgABAAoAAAARAAUAAgABAAEAAAARAAYAAgABAAEAAAARAAcAAgAOAAUAAAARAAgAAgABAAEAAAARAAkAAgAOAAUAAAAIAAEAAgABAAoAAAAJAAIAAgABAAEAAAAKAAIAAgABAAEAAAALAAIAAgABAAEAAAALAAMAAgABAAEAAAAGAAAAAgABAAEAAAAGAAEAAgABAAoAAAAHAAEAAgABAAEAAAAHAAIAAgAOAAUAAAAGAAIAAgAOAAUAAAAHAAAAAgABAAEAAAAIAAAAAgABAAEAAAAIAAIAAgABAAEAAAA=")
 tile_set = ExtResource("1_63i5o")
 
-[node name="Layer_objects" type="TileMapLayer" parent="World"]
+[node name="Layer_objects" type="TileMapLayer" parent="World/Map"]
 tile_map_data = PackedByteArray("AAAGAAEAAgAPAAUAAAAHAAIAAgAPAAUAAAAHAAEAAgARAAUAAAAKAAEAAgARAAUAAAAJAAAAAgARAAUAAAAQAAEAAgARAAUAAAARAAAAAgARAAUAAAARAAEAAgAVAAUAAAAIAAEAAgAVAAUAAAAKAAgAAgAUAAUAAAALAAcAAgARAAUAAAAJAAgAAgAQAAUAAAAKAAcAAgAQAAUAAAAPAAgAAgAVAAUAAAAOAAcAAgAWAAUAAAAOAAgAAgAPAAUAAAAQAAcAAgARAAUAAAABAAkAAgARAAUAAAAAAAgAAgARAAUAAAAQAAMAAgAUAAUAAAAJAAEAAgAUAAUAAAA=")
 tile_set = ExtResource("1_63i5o")
 
@@ -55,11 +58,16 @@ wave_data_file = "res://assets/waves/map1.json"
 position = Vector2(-2, 127.548)
 scale = Vector2(25.1814, -45.4777)
 script = ExtResource("5_prr5q")
-enemy_path_nodepath = NodePath("../EnemyPath")
+initial_path_segment_nodepath = NodePath("../Paths/EntrySegment")
 
-[node name="EnemyContainer" type="Node" parent="World/EnemySpawner"]
+[node name="EnemiesContainer" type="Node" parent="World/EnemySpawner"]
 
-[node name="EnemyPath" type="Path2D" parent="World"]
+[node name="Paths" type="Node" parent="World"]
+
+[node name="EntrySegment" parent="World/Paths" node_paths=PackedStringArray("path_2d_node") instance=ExtResource("6_68xhw")]
+path_2d_node = NodePath("EnemyPath")
+
+[node name="EnemyPath" type="Path2D" parent="World/Paths/EntrySegment"]
 curve = SubResource("Curve2D_jclyi")
 
 [node name="PathBlocker" type="Area2D" parent="World"]
@@ -70,13 +78,13 @@ collision_mask = 0
 position = Vector2(125, 127.548)
 shape = SubResource("RectangleShape2D_bwlk2")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/PathBlocker"]
-position = Vector2(195.339, 374.395)
-shape = SubResource("RectangleShape2D_ugr47")
-
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="World/PathBlocker"]
 position = Vector2(893, 187)
 shape = SubResource("RectangleShape2D_fxa07")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World/PathBlocker"]
+position = Vector2(195.339, 374.395)
+shape = SubResource("RectangleShape2D_ugr47")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="World/PathBlocker"]
 position = Vector2(582.544, 321.141)

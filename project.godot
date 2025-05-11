@@ -33,6 +33,21 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/helpers/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray",
+"res://assets/enemies/": "red",
+"res://assets/ui/": "purple",
+"res://assets/waves/": "teal",
+"res://scenes/": "yellow",
+"res://scenes/enemies/": "red",
+"res://scenes/maps/": "teal",
+"res://scenes/towers/": "blue",
+"res://scenes/ui/": "purple",
+"res://src/": "green"
+}
+
 [global_group]
 
 enemies=""

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpprkq5oeve7m"]
+
+[ext_resource type="Script" uid="uid://bpvbjjf81xiu0" path="res://src/maps/paths/PathSegment.gd" id="1_s2a7y"]
+
+[node name="PathSegment" type="Node"]
+script = ExtResource("1_s2a7y")
