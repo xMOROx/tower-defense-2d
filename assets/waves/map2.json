@@ -3,10 +3,10 @@
 		"wave_name": "Wave 1: Introduction",
 		"spawns": [
 			{
-				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
-				"count": 7,
-				"interval": 1.2,
-				"start_delay": 0.5
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 10,
+				"interval": 0.65,
+				"start_delay": 1
 			}
 		]
 	},
