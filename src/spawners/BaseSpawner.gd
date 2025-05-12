@@ -7,7 +7,6 @@ extends Node
 var path_node: Path2D = null
 var enemies_container: Node = null
 
-
 func _ready():
 	if enemy_path_nodepath.is_empty():
 		printerr("BaseSpawner Error: Enemy Path NodePath not set in the inspector!")
@@ -33,8 +32,7 @@ func _ready():
 		printerr("BaseSpawner Info: Enemy Container NodePath not set. Enemies will be added as children of the spawner.")
 
 	
-	print("BaseSpawner initialized. Path: ", path_node.name)
-
+	
 
 func spawn_specific_enemy(enemy_scene_to_spawn: PackedScene) -> Node2D:
 	if path_node == null:
