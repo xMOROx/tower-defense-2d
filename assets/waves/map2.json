@@ -1,0 +1,115 @@
+[
+	{
+		"wave_name": "Wave 1: Introduction",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 10,
+				"interval": 0.65,
+				"start_delay": 1
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 2: First Variety",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
+				"count": 4,
+				"interval": 0.5,
+				"start_delay": 0.3
+			},
+			{
+				"enemy_scene_path": "res://scenes/enemies/FastEnemy.tscn",
+				"count": 2,
+				"interval": 1.5,
+				"start_delay": 2.0
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 3: Small Groups",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
+				"count": 6,
+				"interval": 0.4,
+				"start_delay": 0.1
+			},
+			{
+				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
+				"count": 6,
+				"interval": 0.7,
+				"start_delay": 3.0
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 4: Introducing Tougher Enemy",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
+				"count": 15,
+				"interval": 0.4,
+				"start_delay": 0.2
+			},
+			{
+				"enemy_scene_path": "res://scenes/enemies/StrongEnemy.tscn",
+				"count": 2,
+				"interval": 0.0,
+				"start_delay": 5.0
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 5: Fast Onslaught",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://scenes/enemies/FastEnemy.tscn",
+				"count": 20,
+				"interval": 0.4,
+				"start_delay": 1.0
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 6: Mixed Forces",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
+				"count": 10,
+				"interval": 0.6,
+				"start_delay": 0.1
+			},
+			{
+				"enemy_scene_path": "res://scenes/enemies/FastEnemy.tscn",
+				"count": 10,
+				"interval": 0.6,
+				"start_delay": 2.5
+			},
+			{
+				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
+				"count": 10,
+				"interval": 0.9,
+				"start_delay": 7.0
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 7: Mini-Boss Intro",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
+				"count": 30,
+				"interval": 0.3,
+				"start_delay": 0.3
+			},
+			{
+				"enemy_scene_path": "res://scenes/enemies/StrongEnemy.tscn",
+				"count": 10,
+				"interval": 0.3,
+				"start_delay": 7.0
+			}
+		]
+	}
+]
