@@ -86,7 +86,10 @@ func _process(delta):
 		global_position = next_position
 	
 func take_damage(amount: float):
-	current_health -= amount
+	current_health -= amount	
+
+	# Optional: Add visual feedback like flashing red here later
+
 	if health_bar:
 		health_bar.value = current_health
 		if show_only_when_damaged and current_health > 0:

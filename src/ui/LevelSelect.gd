@@ -21,7 +21,7 @@ func _ready():
 	_on_game_progress_loaded()
 
 func _on_level_1_button_pressed():
-	print("LevelSelect: Level 1 selected")
+	
 	SceneManager.goto_level(level_1_scene_path) 
 	
 func _on_level_2_button_pressed():
@@ -29,11 +29,11 @@ func _on_level_2_button_pressed():
 	SceneManager.goto_level(level_2_scene_path) 
 
 func _on_back_button_pressed():
-	print("LevelSelect: Back button pressed")
+	
 	SceneManager.goto_main_menu()
 
 func _on_game_progress_loaded():
-	print("LevelSelect: Game progress loaded")
+	
 	var all_obtained_stars: int = 0
 	for level in levels:
 		all_obtained_stars += StateManager.get_level_stars(level)
@@ -42,9 +42,8 @@ func _on_game_progress_loaded():
 	
 	
 func _update_level_stars(button: Button, level_path: String):	
-	print("LevelSelect: Updating stars for level", level_path)
+	
 	var stars = StateManager.get_level_stars(level_path)
-	print("LevelSelect: Stars for level", level_path, ":", stars)
 	
 	match stars:
 		0:
@@ -55,5 +54,3 @@ func _update_level_stars(button: Button, level_path: String):
 			button.get_node("Stars").texture = stars2
 		3:
 			button.get_node("Stars").texture = stars3
-		_:
-			print("LevelSelect: Invalid star count for level", level_path, ":", stars)
