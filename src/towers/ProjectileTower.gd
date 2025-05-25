@@ -9,8 +9,6 @@ class_name ProjectileTower
 
 var current_attack_damage: float
 
-@onready var sprite: Sprite2D = $body/head
-
 func _ready():
 	super._ready()
 	current_attack_damage = base_attack_damage
@@ -19,11 +17,10 @@ func _ready():
 
 func _perform_attack(target: Node2D):
 	if projectile_scene == null: return
-
-	if is_instance_valid(sprite):
-		sprite.look_at(target.global_position)
-		sprite.rotation += deg_to_rad(90)
 	
+	call_deferred("_spawn_projectile", target)
+
+func _spawn_projectile(target: Node2D):
 	var new_projectile = projectile_scene.instantiate()
 	if not new_projectile is Node or not new_projectile.has_method("launch"):
 		printerr(name, ": Invalid projectile scene or missing launch() method.")
