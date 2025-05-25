@@ -5,7 +5,6 @@ extends CanvasLayer
 @onready var wave_label: Label = $WaveLabel 
 @onready var upgrade_menu: Control = $TowerUpgradeMenu
 
-
 var currently_selected_tower: Node = null 
 
 func _ready():
@@ -51,12 +50,12 @@ func _on_tower_show_upgrade_menu(tower: Node) -> void:
 		printerr("Main Scene Error: TowerUpgradeMenu instance is missing the 'show_for_tower' method!")
 		return 
 
-	print("Main Scene: Relaying request to show upgrade menu for tower:", tower.name)
+	
 	upgrade_menu.show_for_tower(tower) 
 
 func _on_upgrade_menu_visibility_changed():
 	if not upgrade_menu.visible and is_instance_valid(currently_selected_tower):
-		print("Upgrade menu hidden, deselecting tower:", currently_selected_tower.name)
+		
 		if currently_selected_tower.has_method("hide_range_indicator"):
 			currently_selected_tower.hide_range_indicator()
 		currently_selected_tower = null
@@ -69,7 +68,6 @@ func _on_currency_changed(current_currency: int):
 	
 func _on_wave_changed(current_wave: int): 
 	_update_wave_display(current_wave) 
-
 
 func _update_lives_display(current_lives: int):
 	if lives_label:

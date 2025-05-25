@@ -626,8 +626,10 @@ max_health = 30.0
 currency_reward = 15
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(5, -4)
+scale = Vector2(0.427083, 0.427083)
 sprite_frames = SubResource("SpriteFrames_pjnvk")
-animation = &"walk"
+animation = &"attack"
 autoplay = "walk"
 speed_scale = 0.85
 
@@ -642,10 +644,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -75.0
-offset_top = 110.0
-offset_right = 225.0
-offset_bottom = 140.0
+offset_left = -39.0
+offset_top = 45.0
+offset_right = 121.0
+offset_bottom = 61.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.5, 0.5)

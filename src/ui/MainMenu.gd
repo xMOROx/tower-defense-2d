@@ -9,9 +9,9 @@ func _ready():
 	start_button.grab_focus()
 
 func _on_start_button_pressed():
-	print("MainMenu: Start button pressed")
+	
 	SceneManager.goto_level_select()
 
 func _on_quit_button_pressed():
-	print("MainMenu: Quit button pressed")
+	
 	get_tree().quit()

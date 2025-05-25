@@ -10,8 +10,8 @@ func _ready():
 	else:
 		animated_sprite.animation_finished.connect(_on_animation_finished)
 
-func set_path(new_path: Path2D):
-	super.set_path(new_path)
+func start_on_path(initial_segment: PathSegment):
+	super.start_on_path(initial_segment)
 	if visible and is_processing():
 		_update_movement_animation()
 
