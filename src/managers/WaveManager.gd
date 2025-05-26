@@ -19,6 +19,7 @@ var current_state: State = State.INIT
 var spawner: Node
 var _processed_wave_definitions: Array = []
 var current_wave_index: int = -1
+var number_of_waves: int = 0
 var wave_spawn_data: Array = []
 var current_spawn_group_index: int = 0
 var enemies_alive_this_wave: int = 0
@@ -77,6 +78,7 @@ func _load_and_process_wave_data() -> bool:
 
 	var loaded_data = json_parser_result
 	_processed_wave_definitions = []
+	number_of_waves = loaded_data.size()
 
 	for i in range(loaded_data.size()):
 		var wave_def = loaded_data[i]
@@ -128,6 +130,10 @@ func _start_intermission():
 	intermission_timer.start()
 	emit_signal("intermission_started", intermission_duration)
 	GameManager.set_wave(current_wave_index + 1)
+	
+	
+func get_number_of_waves() -> int:
+	return number_of_waves
 
 func _on_intermission_timer_timeout():
 	_start_next_wave()
