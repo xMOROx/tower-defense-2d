@@ -88,6 +88,6 @@ func _update_wave_display(current_wave: int):
 	if wave_label:
 		if current_wave > 0: 
 			wave_label.text = "%d / %d" % [current_wave, 7]
-			wave_progress_bar.value = current_wave / 7.0 * 100.0
+			wave_progress_bar.value = (current_wave - 1) / 7.0 * 100.0
 		else: 
 			wave_label.text = "Not started"
