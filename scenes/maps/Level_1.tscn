@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dhic07exb4uhr" path="res://scenes/ui/TowerUpgradeMenu.tscn" id="6_n8iyc"]
 [ext_resource type="Script" uid="uid://djg5lxas2wk88" path="res://src/ui/ScalableCamera2D.gd" id="9_68xhw"]
 [ext_resource type="Texture2D" uid="uid://ciopj22wymlcd" path="res://assets/ui/Logotype/NameBack.png" id="9_cigdg"]
-[ext_resource type="Texture2D" uid="uid://cgl0237dq4l1i" path="res://assets/ui/Star/Unactive.png" id="10_uawvj"]
+[ext_resource type="Texture2D" uid="uid://c8vtelxv3rum6" path="res://assets/ui/Star/Active.png" id="10_uawvj"]
 [ext_resource type="Texture2D" uid="uid://besqh4q86n752" path="res://assets/ui/Counter/Default.png" id="11_cqist"]
 [ext_resource type="Texture2D" uid="uid://cxk1owc4terpo" path="res://assets/ui/Counter/Icon/Money.png" id="12_cd5el"]
 [ext_resource type="LabelSettings" uid="uid://cpoxif4j07555" path="res://assets/fonts/LabelSettingsHugeFont.tres" id="13_cd5el"]

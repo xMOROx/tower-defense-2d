@@ -6,6 +6,10 @@ extends CanvasLayer
 @onready var wave_progress_bar: TextureProgressBar = $WaveProgressBar
 @onready var upgrade_menu: Control = $TowerUpgradeMenu
 
+@onready var star1: Sprite2D = $StarsContainer/Star1
+@onready var star2: Sprite2D = $StarsContainer/Star2
+@onready var star3: Sprite2D = $StarsContainer/Star3
+
 var currently_selected_tower: Node = null 
 
 func _ready():
@@ -19,6 +23,7 @@ func _ready():
 		upgrade_menu.visibility_changed.connect(_on_upgrade_menu_visibility_changed)
 	
 	GameManager.lives_changed.connect(_on_lives_changed)
+	GameManager.stars_changed.connect(_on_stars_changed)
 	GameManager.currency_changed.connect(_on_currency_changed) 
 	GameManager.wave_changed.connect(_on_wave_changed)
 
@@ -64,6 +69,10 @@ func _on_upgrade_menu_visibility_changed():
 
 func _on_lives_changed(current_lives: int):
 	_update_lives_display(current_lives)
+	
+func _on_stars_changed(current_stars: int):	
+	print("HUD: Stars changed to %d" % current_stars)
+	_update_stars_display(current_stars)
 
 func _on_currency_changed(current_currency: int):
 	_update_currency_display(current_currency)
@@ -79,6 +88,14 @@ func _update_lives_display(current_lives: int):
 			lives_label.modulate = Color.RED
 		else:
 			lives_label.modulate = Color.WHITE 
+
+func _update_stars_display(current_stars: int):			
+	var filled_star_texture = load("res://assets/ui/Star/Active.png")
+	var empty_star_texture = load("res://assets/ui/Star/Unactive.png")
+	
+	star1.texture = filled_star_texture if current_stars >= 1 else empty_star_texture
+	star2.texture = filled_star_texture if current_stars >= 2 else empty_star_texture
+	star3.texture = filled_star_texture if current_stars >= 3 else empty_star_texture
 			
 func _update_currency_display(current_currency: int): 
 	if currency_label:

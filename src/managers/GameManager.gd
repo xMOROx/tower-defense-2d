@@ -4,6 +4,7 @@ extends Node
 signal lives_changed(current_lives)
 signal currency_changed(current_currency)
 signal wave_changed(current_wave)
+signal stars_changed(current_stars)
 
 # --- Player Stats ---
 const MAX_LIVES: int = 20
@@ -12,6 +13,7 @@ var current_currency: int = 100
 
 # --- Game State ---
 var current_wave_number: int = 0 # Start at 0, wave 1 is the first playable
+var current_stars: int = 3
 
 func _ready():
 	current_lives = MAX_LIVES
@@ -25,11 +27,15 @@ func _input(event):
 
 # --- Lives ---
 func lose_life():
-	if current_lives > 0:
-		current_lives -= 1
-		emit_signal("lives_changed", current_lives)
-		if current_lives <= 0:
-			game_over()
+	if current_lives <= 0:
+		return
+	current_lives -= 1
+	current_stars = _compute_stars()
+	if current_lives <= 0:
+		game_over()
+		return
+	emit_signal("lives_changed", current_lives)	
+	emit_signal("stars_changed", current_stars)
 
 # --- Currency ---
 func add_currency(amount: int):
@@ -66,10 +72,12 @@ func reset_game():
 	current_lives = MAX_LIVES
 	current_currency = 100
 	current_wave_number = 0
+	current_stars = 3
 	
 	emit_signal("lives_changed", current_lives)
 	emit_signal("currency_changed", current_currency)
 	emit_signal("wave_changed", current_wave_number)
+	emit_signal("stars_changed", current_stars)
 	
 	
 
