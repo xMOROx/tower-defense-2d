@@ -7,12 +7,24 @@ extends Control
 
 var level_1_scene_path = "res://scenes/maps/Level_1.tscn"
 var level_2_scene_path = "res://scenes/maps/Level_2.tscn"
+@onready var levels: Array[Variant] = [
+				 {
+					"name": "Level 1",
+					"path": "res://scenes/maps/Level_1.tscn",
+					"button": level_1_button
+				 },
+				 {
+					"name": "Level 2",
+					"path": "res://scenes/maps/Level_2.tscn",
+					"button": level_2_button
+				 }
+			 ]
+
 
 var stars0 = load("res://assets/ui/Level/Star/Group/0-3.png")
 var stars1 = load("res://assets/ui/Level/Star/Group/1-3.png")
 var stars2 = load("res://assets/ui/Level/Star/Group/2-3.png")
 var stars3 = load("res://assets/ui/Level/Star/Group/3-3.png")
-var levels = [level_1_scene_path]
 
 func _ready():
 	level_1_button.pressed.connect(_on_level_1_button_pressed)
@@ -21,24 +33,25 @@ func _ready():
 	_on_game_progress_loaded()
 
 func _on_level_1_button_pressed():
-	
-	SceneManager.goto_level(level_1_scene_path) 
+	SceneManager.goto_level(level_1_scene_path, levels[0]["name"]) 
 	
 func _on_level_2_button_pressed():
-	print("LevelSelect: Level 2 selected")
-	SceneManager.goto_level(level_2_scene_path) 
+	SceneManager.goto_level(level_2_scene_path, levels[1]["name"]) 
 
 func _on_back_button_pressed():
-	
 	SceneManager.goto_main_menu()
 
 func _on_game_progress_loaded():
 	
 	var all_obtained_stars: int = 0
 	for level in levels:
-		all_obtained_stars += StateManager.get_level_stars(level)
+		var button = level["button"]
+		var level_path = level["path"]
+		_update_level_stars(button, level_path)
+		all_obtained_stars += StateManager.get_level_stars(level["path"])
+
 	score_label.text = str(all_obtained_stars) + "/" + str(levels.size()*3)
-	_update_level_stars(level_1_button, level_1_scene_path)
+		# button.disabled = not StateManager.is_level_unlocked(level_path)
 	
 	
 func _update_level_stars(button: Button, level_path: String):	

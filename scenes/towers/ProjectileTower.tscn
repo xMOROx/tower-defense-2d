@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dsdhiykb81bg"]
 
 [ext_resource type="Script" uid="uid://bkrkt8f0p66p3" path="res://src/towers/ProjectileTower.gd" id="1_g767u"]
-[ext_resource type="PackedScene" uid="uid://b7w4do52snlhj" path="res://scenes/towers/projectiles/rocket.tscn" id="2_tddiq"]
+[ext_resource type="PackedScene" uid="uid://1wam1py6jwsm" path="res://scenes/towers/projectiles/stone.tscn" id="2_tddiq"]
 [ext_resource type="Texture2D" uid="uid://c0x2mx1blwlwl" path="res://assets/graphics/towerDefense_tilesheet.png" id="2_uyl23"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4iyp"]

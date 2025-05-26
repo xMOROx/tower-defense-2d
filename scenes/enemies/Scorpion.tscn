@@ -1,6 +1,6 @@
 [gd_scene load_steps=146 format=3 uid="uid://cq2eho2auilwe"]
 
-[ext_resource type="Script" uid="uid://dyqks13s88wra" path="res://src/enemies/AnimatedEnemy.gd" id="1_jyxq0"]
+[ext_resource type="Script" path="res://src/enemies/AnimatedEnemy.gd" id="1_jyxq0"]
 [ext_resource type="Texture2D" uid="uid://c5p7sgsuwfl5h" path="res://assets/enemies/scorpion/attack/1_enemies_1_attack_000.png" id="1_pjnvk"]
 [ext_resource type="Texture2D" uid="uid://4djlasmiahwh" path="res://assets/enemies/scorpion/attack/1_enemies_1_attack_001.png" id="2_jyxq0"]
 [ext_resource type="Texture2D" uid="uid://u5ntm714rwfe" path="res://assets/enemies/scorpion/attack/1_enemies_1_attack_002.png" id="3_4bl47"]
