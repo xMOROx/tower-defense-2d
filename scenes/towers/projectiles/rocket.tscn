@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7w4do52snlhj"]
+
+[ext_resource type="Script" uid="uid://c0s51og5uqxti" path="res://src/towers/projectiles/Projectile.gd" id="1_ew3iy"]
+[ext_resource type="Texture2D" uid="uid://c0x2mx1blwlwl" path="res://assets/graphics/towerDefense_tilesheet.png" id="2_lenac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1albn"]
+size = Vector2(13.5, 35)
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_ew3iy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_lenac")
+region_enabled = true
+region_rect = Rect2(1368, 648, 16, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, 0.5)
+shape = SubResource("RectangleShape2D_1albn")
