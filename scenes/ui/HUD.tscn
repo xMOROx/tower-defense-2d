@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://b34woc6tm74qs"]
+
+[ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://src/Hud.gd" id="1_6bi52"]
+[ext_resource type="PackedScene" uid="uid://dhic07exb4uhr" path="res://scenes/ui/TowerUpgradeMenu.tscn" id="2_e8r00"]
+[ext_resource type="Texture2D" uid="uid://ciopj22wymlcd" path="res://assets/ui/Logotype/NameBack.png" id="3_4wy6o"]
+[ext_resource type="Texture2D" uid="uid://c8vtelxv3rum6" path="res://assets/ui/Star/Active.png" id="4_blesy"]
+[ext_resource type="Texture2D" uid="uid://besqh4q86n752" path="res://assets/ui/Counter/Default.png" id="5_lo123"]
+[ext_resource type="Texture2D" uid="uid://brpqq81bn56eq" path="res://assets/ui/Icon/Heart.png" id="6_dbt7h"]
+[ext_resource type="LabelSettings" uid="uid://cpoxif4j07555" path="res://assets/fonts/LabelSettingsHugeFont.tres" id="7_ffvok"]
+[ext_resource type="Texture2D" uid="uid://cxk1owc4terpo" path="res://assets/ui/Counter/Icon/Money.png" id="8_rfrwv"]
+[ext_resource type="Texture2D" uid="uid://cnvq0wgaq04g6" path="res://assets/ui/Level/Button/Dummy.png" id="9_oteo6"]
+[ext_resource type="Texture2D" uid="uid://c0x2mx1blwlwl" path="res://assets/graphics/towerDefense_tilesheet.png" id="10_wp0rr"]
+[ext_resource type="LabelSettings" uid="uid://cnuobffc03vx7" path="res://assets/fonts/LabelSettings.tres" id="11_5xyxr"]
+[ext_resource type="Texture2D" uid="uid://5le64dqrhc52" path="res://assets/ui/Bar/Background.png" id="12_tk5th"]
+[ext_resource type="Texture2D" uid="uid://d4ba564kiwulq" path="res://assets/ui/Bar/Line.png" id="13_khi7q"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_6bi52")
+
+[node name="TowerUpgradeMenu" parent="." instance=ExtResource("2_e8r00")]
+visible = false
+
+[node name="StarsContainer" type="Sprite2D" parent="."]
+position = Vector2(1819.99, 38.8526)
+scale = Vector2(0.4467, 0.4467)
+texture = ExtResource("3_4wy6o")
+
+[node name="Star1" type="Sprite2D" parent="StarsContainer"]
+position = Vector2(-125, -4.7)
+texture = ExtResource("4_blesy")
+
+[node name="Star2" type="Sprite2D" parent="StarsContainer"]
+position = Vector2(0, -4.7)
+texture = ExtResource("4_blesy")
+
+[node name="Star3" type="Sprite2D" parent="StarsContainer"]
+position = Vector2(125, -4.7)
+texture = ExtResource("4_blesy")
+
+[node name="HeartContainer" type="Sprite2D" parent="."]
+position = Vector2(1839.61, 171.314)
+texture = ExtResource("5_lo123")
+
+[node name="Heart" type="Sprite2D" parent="HeartContainer"]
+position = Vector2(-44.3537, -1.33106)
+scale = Vector2(0.3015, 0.3015)
+texture = ExtResource("6_dbt7h")
+
+[node name="LivesLabel" type="Label" parent="HeartContainer"]
+anchors_preset = -1
+anchor_left = 0.00263751
+anchor_top = 1.50045e-05
+anchor_right = 0.00263751
+anchor_bottom = 1.50045e-05
+offset_left = -24.3798
+offset_top = -27.0009
+offset_right = 71.6202
+offset_bottom = 21.9991
+theme_override_font_sizes/font_size = 36
+text = "0"
+label_settings = ExtResource("7_ffvok")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MoneyContainer" type="Sprite2D" parent="."]
+position = Vector2(1839.61, 106.133)
+texture = ExtResource("5_lo123")
+
+[node name="Money" type="Sprite2D" parent="MoneyContainer"]
+position = Vector2(-44.3723, -2.07697)
+texture = ExtResource("8_rfrwv")
+
+[node name="CurrencyLabel" type="Label" parent="MoneyContainer"]
+anchors_preset = -1
+anchor_left = 0.081403
+anchor_top = -0.122
+anchor_right = 0.081403
+anchor_bottom = -0.0129576
+offset_left = -36.0944
+offset_top = -18.1049
+offset_right = 58.9056
+offset_bottom = 24.3525
+theme_override_font_sizes/font_size = 24
+text = "0"
+label_settings = ExtResource("7_ffvok")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TowerBar" type="HBoxContainer" parent="."]
+offset_top = 937.41
+offset_right = 1916.0
+offset_bottom = 1050.41
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Tower1" type="Button" parent="TowerBar"]
+layout_mode = 2
+icon = ExtResource("9_oteo6")
+flat = true
+
+[node name="body" type="Sprite2D" parent="TowerBar/Tower1"]
+position = Vector2(49.4597, 43.4337)
+scale = Vector2(1.05786, 1.05786)
+texture = ExtResource("10_wp0rr")
+region_enabled = true
+region_rect = Rect2(1217, 449, 64, 64)
+
+[node name="head" type="Sprite2D" parent="TowerBar/Tower1/body"]
+position = Vector2(0, -2.09836)
+scale = Vector2(0.93989, 0.93989)
+texture = ExtResource("10_wp0rr")
+region_enabled = true
+region_rect = Rect2(1224, 520, 48, 48)
+
+[node name="TowerCost" type="Label" parent="TowerBar/Tower1"]
+layout_mode = 0
+offset_left = 7.28876
+offset_top = 78.1944
+offset_right = 92.2885
+offset_bottom = 101.194
+text = "50 $"
+label_settings = ExtResource("11_5xyxr")
+horizontal_alignment = 1
+
+[node name="WaveProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 478.428
+offset_top = 7.36029
+offset_right = 974.428
+offset_bottom = 59.3603
+scale = Vector2(2, 1)
+texture_under = ExtResource("12_tk5th")
+texture_progress = ExtResource("13_khi7q")
+texture_progress_offset = Vector2(8, 8)
+
+[node name="WaveLabel" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.444894
+anchor_top = 0.0118519
+anchor_right = 0.557
+anchor_bottom = 0.043335
+offset_left = -0.196045
+offset_top = 0.199999
+offset_right = 0.559937
+offset_bottom = 0.198193
+theme_override_font_sizes/font_size = 24
+text = "Wave placeholder"
+horizontal_alignment = 3
+metadata/_edit_use_anchors_ = true

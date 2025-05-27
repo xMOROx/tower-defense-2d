@@ -8,6 +8,7 @@ var pause_menu_path = "res://scenes/ui/PauseMenu.tscn"
 
 var current_scene_node: Node = null
 var last_played_level_path: String = ""
+var last_played_level_name: String = ""
 var pause_menu_instance: Node = null
 var is_game_paused: bool = false
 
@@ -25,15 +26,16 @@ func goto_game_over():
 	_change_scene(game_over_path, false)
 
 func goto_level_winner(stars):
-	_change_scene(level_winner_path, false, {"stars": stars})
+	_change_scene(level_winner_path, false, {"stars": stars, "level_name": last_played_level_name})
 
-func goto_level(level_scene_path: String):
+func goto_level(level_scene_path: String, level_name: String):
 	if level_scene_path.is_empty() or not ResourceLoader.exists(level_scene_path):
 		printerr("SceneManager Error: Invalid or non-existent level path provided:", level_scene_path)
 		goto_main_menu()
 		return
 		
 	last_played_level_path = level_scene_path
+	last_played_level_name = level_name
 	_change_scene(level_scene_path, true)
 
 func retry_level():

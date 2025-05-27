@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7w4do52snlhj"]
+[gd_scene load_steps=4 format=3 uid="uid://1wam1py6jwsm"]
 
-[ext_resource type="Script" uid="uid://c0s51og5uqxti" path="res://src/towers/projectiles/Projectile.gd" id="1_ew3iy"]
-[ext_resource type="Texture2D" uid="uid://c0x2mx1blwlwl" path="res://assets/graphics/towerDefense_tilesheet.png" id="2_lenac"]
+[ext_resource type="Script" uid="uid://c0s51og5uqxti" path="res://src/towers/projectiles/Projectile.gd" id="1_5m5s1"]
+[ext_resource type="Texture2D" uid="uid://c0x2mx1blwlwl" path="res://assets/graphics/towerDefense_tilesheet.png" id="2_bm2i7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1albn"]
 size = Vector2(13.5, 35)
@@ -9,10 +9,11 @@ size = Vector2(13.5, 35)
 [node name="Projectile" type="Area2D"]
 collision_layer = 8
 collision_mask = 2
-script = ExtResource("1_ew3iy")
+script = ExtResource("1_5m5s1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_lenac")
+rotation = 1.57079
+texture = ExtResource("2_bm2i7")
 region_enabled = true
 region_rect = Rect2(1368, 648, 16, 48)
 

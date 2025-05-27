@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var build_tower_button: Button = $HUD/BuildTowerButton
+@onready var build_tower_button: Button = $HUD/TowerBar/Tower1
 @onready var towers_container: Node2D = $World/TowersContainer
 @onready var upgrade_menu: Control = $HUD/TowerUpgradeMenu
 
@@ -31,7 +31,7 @@ func _ready():
 		upgrade_menu.visibility_changed.connect(_on_upgrade_menu_visibility_changed)
 	if build_tower_button:
 		build_tower_button.pressed.connect(_on_build_tower_button_pressed)
-		build_tower_button.text = "Build Tower (Cost: %d)" % basic_tower_cost
+		# build_tower_button.text = "Build Tower (Cost: %d)" % basic_tower_cost
 		build_tower_button.disabled = not GameManager.can_afford(basic_tower_cost)
 		GameManager.currency_changed.connect(_on_currency_changed_update_build_buttons)
 	
