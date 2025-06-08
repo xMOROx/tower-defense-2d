@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://djvuwq56jqhf1" path="res://src/maps/Level1.gd" id="1_55yl8"]
 [ext_resource type="PackedScene" uid="uid://dypncu8rnysyf" path="res://scenes/enemies/WaveManager.tscn" id="2_55yl8"]
-[ext_resource type="PackedScene" uid="uid://dsdhiykb81bg" path="res://scenes/towers/ProjectileTower.tscn" id="2_prr5q"]
+[ext_resource type="PackedScene" uid="uid://dv6xt8vpvoe1x" path="res://scenes/towers/StoneTower.tscn" id="2_68xhw"]
 [ext_resource type="TileSet" uid="uid://gwexrd7vgnos" path="res://assets/tiles/undead.tres" id="3_68xhw"]
 [ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://src/Hud.gd" id="5_ladvl"]
 [ext_resource type="Script" uid="uid://d2potcvpfge7f" path="res://src/spawners/BaseSpawner.gd" id="5_prr5q"]
@@ -30,7 +30,7 @@ size = Vector2(83, 103)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_55yl8")
-basic_tower_scene = ExtResource("2_prr5q")
+basic_tower_scene = ExtResource("2_68xhw")
 
 [node name="World" type="Node2D" parent="."]
 
@@ -95,7 +95,7 @@ initial_path_segment_nodepath = NodePath("../Paths/EntrySegment")
 [node name="Paths" type="Node" parent="World"]
 
 [node name="EntrySegment" parent="World/Paths" node_paths=PackedStringArray("path_2d_node") instance=ExtResource("6_68xhw")]
-path_2d_node = NodePath("")
+path_2d_node = NodePath("Path2D")
 
 [node name="Path2D" type="Path2D" parent="World/Paths/EntrySegment"]
 curve = SubResource("Curve2D_68xhw")
