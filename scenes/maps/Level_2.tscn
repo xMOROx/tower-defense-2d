@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://djvuwq56jqhf1" path="res://src/maps/Level1.gd" id="1_55yl8"]
 [ext_resource type="PackedScene" uid="uid://dypncu8rnysyf" path="res://scenes/enemies/WaveManager.tscn" id="2_55yl8"]
-[ext_resource type="PackedScene" uid="uid://b1hh6mxbqhpj8" path="res://scenes/towers/StoneTower.tscn" id="2_j2gbx"]
+[ext_resource type="PackedScene" uid="uid://dv6xt8vpvoe1x" path="res://scenes/towers/StoneTower.tscn" id="2_j2gbx"]
 [ext_resource type="TileSet" uid="uid://gwexrd7vgnos" path="res://assets/tiles/undead.tres" id="3_5tovl"]
 [ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://src/Hud.gd" id="5_ladvl"]
 [ext_resource type="Script" uid="uid://d2potcvpfge7f" path="res://src/spawners/BaseSpawner.gd" id="5_prr5q"]
@@ -35,16 +35,16 @@ _data = {
 point_count = 12
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fxa07"]
-size = Vector2(111.5, 364.5)
+size = Vector2(103, 356.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_prr5q"]
-size = Vector2(490.145, 109.004)
+size = Vector2(471, 109.004)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68xhw"]
-size = Vector2(123.779, 322.961)
+size = Vector2(115.779, 322.961)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2gbx"]
-size = Vector2(117, 91)
+size = Vector2(117, 84)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kmvld"]
 size = Vector2(1057, 108)
@@ -170,19 +170,19 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="World/PathBlocker"]
-position = Vector2(616.25, 295.75)
+position = Vector2(620.5, 291.75)
 shape = SubResource("RectangleShape2D_fxa07")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="World/PathBlocker"]
-position = Vector2(232.927, 485.502)
+position = Vector2(233.5, 485.502)
 shape = SubResource("RectangleShape2D_prr5q")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="World/PathBlocker"]
-position = Vector2(416.111, 273.48)
+position = Vector2(412.111, 273.48)
 shape = SubResource("RectangleShape2D_68xhw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/PathBlocker"]
-position = Vector2(522.5, 158.5)
+position = Vector2(522.5, 155)
 shape = SubResource("RectangleShape2D_j2gbx")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="World/PathBlocker"]

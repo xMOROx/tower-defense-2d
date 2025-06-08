@@ -1,114 +1,114 @@
 [
 	{
-		"wave_name": "Wave 1: Introduction",
+		"wave_name": "Wave 1: Scorpion Scout",
 		"spawns": [
 			{
 				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 10,
-				"interval": 0.65,
-				"start_delay": 1
-			}
-		]
-	},
-	{
-		"wave_name": "Wave 2: First Variety",
-		"spawns": [
-			{
-				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
-				"count": 4,
-				"interval": 0.5,
-				"start_delay": 0.3
-			},
-			{
-				"enemy_scene_path": "res://scenes/enemies/FastEnemy.tscn",
-				"count": 2,
-				"interval": 1.5,
-				"start_delay": 2.0
-			}
-		]
-	},
-	{
-		"wave_name": "Wave 3: Small Groups",
-		"spawns": [
-			{
-				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
-				"count": 6,
-				"interval": 0.4,
-				"start_delay": 0.1
-			},
-			{
-				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
-				"count": 6,
-				"interval": 0.7,
-				"start_delay": 3.0
-			}
-		]
-	},
-	{
-		"wave_name": "Wave 4: Introducing Tougher Enemy",
-		"spawns": [
-			{
-				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
-				"count": 15,
-				"interval": 0.4,
-				"start_delay": 0.2
-			},
-			{
-				"enemy_scene_path": "res://scenes/enemies/StrongEnemy.tscn",
-				"count": 2,
-				"interval": 0.0,
-				"start_delay": 5.0
-			}
-		]
-	},
-	{
-		"wave_name": "Wave 5: Fast Onslaught",
-		"spawns": [
-			{
-				"enemy_scene_path": "res://scenes/enemies/FastEnemy.tscn",
-				"count": 20,
-				"interval": 0.4,
+				"count": 8,
+				"interval": 0.8,
 				"start_delay": 1.0
 			}
 		]
 	},
 	{
-		"wave_name": "Wave 6: Mixed Forces",
+		"wave_name": "Wave 2: Double Trouble",
 		"spawns": [
 			{
-				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
-				"count": 10,
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 6,
 				"interval": 0.6,
-				"start_delay": 0.1
+				"start_delay": 0.5
 			},
 			{
-				"enemy_scene_path": "res://scenes/enemies/FastEnemy.tscn",
-				"count": 10,
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 6,
 				"interval": 0.6,
-				"start_delay": 2.5
+				"start_delay": 4.0
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 3: Rapid Assault",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 15,
+				"interval": 0.4,
+				"start_delay": 0.3
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 4: Triple Threat",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 8,
+				"interval": 0.5,
+				"start_delay": 0.2
 			},
 			{
-				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
-				"count": 10,
-				"interval": 0.9,
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 8,
+				"interval": 0.5,
+				"start_delay": 3.5
+			},
+			{
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 8,
+				"interval": 0.5,
 				"start_delay": 7.0
 			}
 		]
 	},
 	{
-		"wave_name": "Wave 7: Mini-Boss Intro",
+		"wave_name": "Wave 5: Swarm Mode",
 		"spawns": [
 			{
-				"enemy_scene_path": "res://scenes/enemies/BasicEnemy.tscn",
-				"count": 30,
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 25,
 				"interval": 0.3,
-				"start_delay": 0.3
+				"start_delay": 0.5
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 6: Relentless Waves",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 12,
+				"interval": 0.4,
+				"start_delay": 0.1
 			},
 			{
-				"enemy_scene_path": "res://scenes/enemies/StrongEnemy.tscn",
-				"count": 10,
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 12,
 				"interval": 0.3,
-				"start_delay": 7.0
+				"start_delay": 5.0
+			},
+			{
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 12,
+				"interval": 0.2,
+				"start_delay": 9.0
+			}
+		]
+	},
+	{
+		"wave_name": "Wave 7: Scorpion Apocalypse",
+		"spawns": [
+			{
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 20,
+				"interval": 0.25,
+				"start_delay": 0.2
+			},
+			{
+				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+				"count": 20,
+				"interval": 0.2,
+				"start_delay": 6.0
 			}
 		]
 	}

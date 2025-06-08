@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1hh6mxbqhpj8"]
+[gd_scene load_steps=9 format=3 uid="uid://dv6xt8vpvoe1x"]
 
 [ext_resource type="Script" uid="uid://bkrkt8f0p66p3" path="res://src/towers/ProjectileTower.gd" id="1_5slb2"]
 [ext_resource type="Texture2D" uid="uid://oofm5ltvg73n" path="res://assets/graphics/towers/1/1.png" id="2_de1e5"]
@@ -18,11 +18,18 @@ size = Vector2(165.77, 190.951)
 [node name="StoneTower" type="Node2D"]
 script = ExtResource("1_5slb2")
 projectile_scene = ExtResource("2_oa2s1")
-base_attack_damage = 25.0
-base_damage_increase_per_level = 5.0
-base_range_radius = 250.0
+base_attack_damage = 8.0
+base_damage_increase_per_level = 4.0
+base_damage_upgrade_cost = 20
+cost_increase_per_level_damage = 12
+base_range_radius = 120.0
+base_range_increase_factor = 1.2
+base_range_upgrade_cost = 25
+cost_increase_per_level_range = 15
+base_attack_interval = 0.8
 
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.25
 
 [node name="shooter_1" type="Sprite2D" parent="."]
 position = Vector2(-2, -4)
