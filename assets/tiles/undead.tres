@@ -1140,6 +1140,12 @@ texture = ExtResource("1_n4md6")
 22:59/0 = 0
 20:60/0 = 0
 21:60/0 = 0
+17:30/0 = 0
+16:29/0 = 0
+16:25/0 = 0
+16:24/0 = 0
+16:20/0 = 0
+16:19/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n4md6"]
 resource_name = "ground"
