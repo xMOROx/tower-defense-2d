@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://djvuwq56jqhf1" path="res://src/maps/Level1.gd" id="1_55yl8"]
 [ext_resource type="PackedScene" uid="uid://dypncu8rnysyf" path="res://scenes/enemies/WaveManager.tscn" id="2_55yl8"]
-[ext_resource type="PackedScene" uid="uid://dsdhiykb81bg" path="res://scenes/towers/ProjectileTower.tscn" id="2_prr5q"]
+[ext_resource type="PackedScene" uid="uid://b1hh6mxbqhpj8" path="res://scenes/towers/StoneTower.tscn" id="2_j2gbx"]
 [ext_resource type="TileSet" uid="uid://gwexrd7vgnos" path="res://assets/tiles/undead.tres" id="3_5tovl"]
 [ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://src/Hud.gd" id="5_ladvl"]
 [ext_resource type="Script" uid="uid://d2potcvpfge7f" path="res://src/spawners/BaseSpawner.gd" id="5_prr5q"]
@@ -63,7 +63,7 @@ size = Vector2(269, 121.5)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_55yl8")
-basic_tower_scene = ExtResource("2_prr5q")
+basic_tower_scene = ExtResource("2_j2gbx")
 
 [node name="World" type="Node2D" parent="."]
 
