@@ -30,19 +30,24 @@ enum LayoutPreset {
 }
 
 @export var collapsible : CollapsibleContainer
-@export var texture_button : TextureButton # Could use a TextureRect instead.
+@export var texture_button : TextureButton
 @export var menu_node : Node
 
 @onready var wave_manager: Node
-@onready var scorpion_left: Node
-@onready var scorpion_beaten: Node
+
+# Example: {"res://scenes/enemies/Scorpion.tscn": {"left_label": Node, "beaten_label": Node}}
+var _enemy_stat_labels: Dictionary = {}
 
 func _ready() -> void:
+	# --- Standard UI setup ---
 	if texture_button:
 		texture_button.pressed.connect(toggle_collapsible)
 	else:
 		push_warning("texture_button is not assigned in the editor!")
 
+	# --- WaveManager connection ---
+	# It's highly recommended to use an AutoLoad (Singleton) for WaveManager
+	# for easier global access, e.g., wave_manager = WaveManagerGlobal
 	wave_manager = get_node("/root/Level/World/WaveManager")
 	if wave_manager:
 		if wave_manager.has_signal("wave_stats_changed"):
@@ -52,14 +57,31 @@ func _ready() -> void:
 	else:
 		push_warning("WaveManager not found at /root/Level/World/WaveManager!")
 
+	# --- Initialize enemy stat labels ---
 	if menu_node:
-		scorpion_left = menu_node.get_node("ScorpionLeft")
-		scorpion_beaten = menu_node.get_node("ScorpionBeaten")
+		_enemy_stat_labels = {
+			"res://scenes/enemies/Scorpion.tscn": {
+				"left_label": menu_node.get_node_or_null("ScorpionLeft"),
+				"beaten_label": menu_node.get_node_or_null("ScorpionBeaten")
+			},
+			# Add other enemy types here:
+			# "res://scenes/enemies/Goblin.tscn": {
+			#     "left_label": menu_node.get_node_or_null("GoblinLeft"),
+			#     "beaten_label": menu_node.get_node_or_null("GoblinBeaten")
+			# },
+			# "res://scenes/enemies/Orc.tscn": {
+			#     "left_label": menu_node.get_node_or_null("OrcLeft"),
+			#     "beaten_label": menu_node.get_node_or_null("OrcBeaten")
+			# }
+		}
 
-	if not is_instance_valid(scorpion_left):
-		push_warning("ScorpionLeft not found as a child of menu_node or is not valid!")
-	if not is_instance_valid(scorpion_beaten):
-		push_warning("ScorpionBeaten not found as a child of menu_node or is not valid!")
+		# Basic validation for initialized labels
+		for enemy_path in _enemy_stat_labels.keys():
+			var labels = _enemy_stat_labels[enemy_path]
+			if not is_instance_valid(labels.get("left_label")):
+				push_warning("Label for '%s' (left) not found or invalid!" % enemy_path)
+			if not is_instance_valid(labels.get("beaten_label")):
+				push_warning("Label for '%s' (beaten) not found or invalid!" % enemy_path)
 	else:
 		push_warning("menu_node is not assigned in the editor!")
 
@@ -70,26 +92,41 @@ func toggle_collapsible() -> void:
 	else:
 		push_warning("collapsible is not assigned in the editor!")
 
+
 func _on_wave_stats_changed(wave_stats: Dictionary) -> void:
-	var scorpion_path = "res://scenes/enemies/Scorpion.tscn"
+	# 'wave_stats' dictionary format:
+	# {
+	#   "res://scenes/enemies/Scorpion.tscn": {"left": 10, "beaten": 15},
+	#   "res://scenes/enemies/Goblin.tscn": {"left": 5, "beaten": 8},
+	#   ...
+	# }
 
-	if wave_stats.has(scorpion_path):
-		var scorpion_stats = wave_stats[scorpion_path]
-		var left_count = scorpion_stats.get("left", 0)
-		var beaten_count = scorpion_stats.get("beaten", 0)
+	# Iterate through all enemy types for which we have UI labels
+	for enemy_path in _enemy_stat_labels.keys():
+		var labels = _enemy_stat_labels[enemy_path]
+		var left_label = labels.get("left_label")
+		var beaten_label = labels.get("beaten_label")
 
-		if is_instance_valid(scorpion_left) and scorpion_left is Label:
-			scorpion_left.text = str(left_count)
-		elif is_instance_valid(scorpion_left):
-			push_warning("ScorpionLeft is not a Label. Cannot set text directly.")
+		if wave_stats.has(enemy_path):
+			var enemy_stats = wave_stats[enemy_path]
+			var left_count = enemy_stats.get("left", 0)
+			var beaten_count = enemy_stats.get("beaten", 0)
 
-		if is_instance_valid(scorpion_beaten) and scorpion_beaten is Label:
-			scorpion_beaten.text = str(beaten_count)
-		elif is_instance_valid(scorpion_beaten): # If it's a different node type
-			push_warning("ScorpionBeaten is not a Label. Cannot set text directly.")
-	else:
-		print("No Scorpion stats found in wave_stats.")
-		if is_instance_valid(scorpion_left) and scorpion_left is Label:
-			scorpion_left.text = "0"
-		if is_instance_valid(scorpion_beaten) and scorpion_beaten is Label:
-			scorpion_beaten.text = "0"
+			# Update 'left' label
+			if is_instance_valid(left_label) and left_label is Label:
+				left_label.text = str(left_count)
+			elif is_instance_valid(left_label):
+				push_warning("Label for '%s' (left) is not a Label. Cannot set text directly." % enemy_path)
+
+			# Update 'beaten' label
+			if is_instance_valid(beaten_label) and beaten_label is Label:
+				beaten_label.text = str(beaten_count)
+			elif is_instance_valid(beaten_label):
+				push_warning("Label for '%s' (beaten) is not a Label. Cannot set text directly." % enemy_path)
+		else:
+			# If no stats for this enemy type are present in the wave_stats dictionary,
+			# reset its displayed counts to 0.
+			if is_instance_valid(left_label) and left_label is Label:
+				left_label.text = "0"
+			if is_instance_valid(beaten_label) and beaten_label is Label:
+				beaten_label.text = "0"
