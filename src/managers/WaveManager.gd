@@ -3,6 +3,7 @@ extends Node
 signal all_waves_completed
 signal wave_cleared(wave_number)
 signal intermission_started(duration)
+signal wave_stats_changed(wave_stats)
 
 @export var intermission_duration: float = 5.0
 @export var spawner_node_path: NodePath = NodePath()
@@ -25,6 +26,7 @@ var current_spawn_group_index: int = 0
 var enemies_alive_this_wave: int = 0
 var total_enemies_this_wave: int = 0
 var enemies_spawned_this_wave: int = 0
+var _current_wave_stats: Dictionary = {}
 
 func _ready():
 	if not _validate_dependencies():
@@ -37,7 +39,6 @@ func _ready():
 
 	intermission_timer.timeout.connect(_on_intermission_timer_timeout)
 	spawn_timer.timeout.connect(_spawn_next_enemy)
-	
 	
 	_start_intermission()
 
@@ -110,6 +111,7 @@ func _load_and_process_wave_data() -> bool:
 				break
 				
 			var processed_group = spawn_group_data.duplicate()
+			processed_group["enemy_name"] = path
 			processed_group["scene_resource"] = scene_resource
 			processed_wave["spawns"].append(processed_group)
 
@@ -141,6 +143,8 @@ func _on_intermission_timer_timeout():
 func _start_next_wave():
 	current_wave_index += 1
 
+	_current_wave_stats = {}
+
 	current_state = State.SPAWNING
 	GameManager.set_wave(current_wave_index + 1)
 	
@@ -151,17 +155,19 @@ func _start_next_wave():
 	for spawn_group in current_wave_def["spawns"]:
 		var count = spawn_group["count"]
 		wave_spawn_data.append({
+			"enemy_name": spawn_group["enemy_name"],
 			"scene_resource": spawn_group["scene_resource"],
 			"remaining": count,
 			"interval": max(0.1, spawn_group["interval"] * pow(SPAWN_INTERVAL_SCALING, current_wave_index)),
 			"start_delay": spawn_group.get("start_delay", 0.0)
 		})
 		total_enemies_this_wave += count
+		_current_wave_stats[spawn_group["enemy_name"]] = {"left": int(count), "beaten": 0}
 		
 	enemies_alive_this_wave = 0
 	enemies_spawned_this_wave = 0
 	current_spawn_group_index = 0
-	
+	emit_signal("wave_stats_changed", _current_wave_stats)
 	
 	_trigger_next_spawn_group()
 
@@ -197,7 +203,7 @@ func _spawn_next_enemy():
 	if new_enemy:
 		enemies_spawned_this_wave += 1
 		enemies_alive_this_wave += 1
-		new_enemy.died.connect(_on_enemy_removed, CONNECT_ONE_SHOT | CONNECT_REFERENCE_COUNTED)
+		new_enemy.died.connect(_on_enemy_removed.bind(group_data["enemy_name"]), CONNECT_ONE_SHOT | CONNECT_REFERENCE_COUNTED)
 		new_enemy.leaked.connect(_on_enemy_removed, CONNECT_ONE_SHOT | CONNECT_REFERENCE_COUNTED)
 	
 	group_data["remaining"] -= 1
@@ -215,15 +221,22 @@ func _spawn_next_enemy():
 		if enemies_alive_this_wave <= 0:
 			_wave_cleared()
 
-func _on_enemy_removed(_enemy):
+func _on_enemy_removed(_enemy: Node, enemy_type_path: String):
 	if current_state == State.SPAWNING or current_state == State.WAVE_ACTIVE:
 		enemies_alive_this_wave -= 1
-		
+
+		enemy_beaten(enemy_type_path)
+
 		if enemies_alive_this_wave <= 0 and current_state == State.WAVE_ACTIVE:
 			_wave_cleared()
 		elif enemies_alive_this_wave < 0:
 			printerr("WaveManager Warning: enemies_alive_this_wave count went below zero!")
 			enemies_alive_this_wave = 0
+
+func enemy_beaten(enemy_type_path: String):
+	_current_wave_stats[enemy_type_path]["left"] = int(max(0, _current_wave_stats[enemy_type_path]["left"] - 1))
+	_current_wave_stats[enemy_type_path]["beaten"] += 1
+	emit_signal("wave_stats_changed", _current_wave_stats)
 
 func _wave_cleared():
 	

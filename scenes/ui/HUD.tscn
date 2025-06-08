@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b34woc6tm74qs"]
+[gd_scene load_steps=21 format=3 uid="uid://b34woc6tm74qs"]
 
 [ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://src/Hud.gd" id="1_6bi52"]
 [ext_resource type="PackedScene" uid="uid://dhic07exb4uhr" path="res://scenes/ui/TowerUpgradeMenu.tscn" id="2_e8r00"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://buacim2lvqocw" path="res://assets/ui/Counter/Dummy.png" id="14_e8r00"]
 [ext_resource type="Script" uid="uid://bnnia3l1kh3p4" path="res://src/ui/LevelDetailsMenu.gd" id="15_4wy6o"]
 [ext_resource type="Script" uid="uid://dwl248obq7042" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="15_blesy"]
+[ext_resource type="Texture2D" uid="uid://bfeqyhb6pwiby" path="res://assets/enemies/scorpion/idle/1_enemies_1_idle_000.png" id="18_rfrwv"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_6bi52")
@@ -186,7 +187,6 @@ editor_description = "
 			A custom/plugin Control node capable of hiding and revealing its children by folding and unfolding.
 			
 Give feedback at: https://github.com/ArshvirGoraya/Godot-Collapsible-Container"
-clip_contents = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = 4.0
@@ -197,12 +197,11 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("15_blesy")
 starts_opened = false
-sizing_node = NodePath("TextureButton")
+sizing_node = NodePath(".")
 use_custom_open_size = true
 custom_open_size = Vector2(500, 200)
-_preview_starts_opened = false
 
-[node name="TextureButton" type="TextureButton" parent="CollapsibleContainer"]
+[node name="Menu" type="TextureButton" parent="CollapsibleContainer"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = -1
@@ -213,7 +212,7 @@ texture_normal = ExtResource("14_e8r00")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TowerCost" type="Label" parent="CollapsibleContainer/TextureButton"]
+[node name="TowerCost" type="Label" parent="CollapsibleContainer/Menu"]
 layout_mode = 2
 offset_left = 8.33883
 offset_top = 13.4704
@@ -223,7 +222,7 @@ text = "Enemy"
 label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
-[node name="TowerCost2" type="Label" parent="CollapsibleContainer/TextureButton"]
+[node name="TowerCost2" type="Label" parent="CollapsibleContainer/Menu"]
 layout_mode = 2
 offset_left = 5.3454
 offset_top = 40.2254
@@ -233,7 +232,7 @@ text = "BEATEN"
 label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
-[node name="TowerCost3" type="Label" parent="CollapsibleContainer/TextureButton"]
+[node name="TowerCost3" type="Label" parent="CollapsibleContainer/Menu"]
 layout_mode = 2
 offset_left = 8.12501
 offset_top = 56.7975
@@ -243,14 +242,13 @@ text = "LEFT"
 label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="CollapsibleContainer/TextureButton"]
+[node name="Scorpion" type="Sprite2D" parent="CollapsibleContainer/Menu"]
 position = Vector2(79.6838, 19.8537)
-scale = Vector2(0.595755, 0.595755)
-texture = ExtResource("10_wp0rr")
-region_enabled = true
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("18_rfrwv")
 region_rect = Rect2(960, 640, 64, 64)
 
-[node name="TowerCost5" type="Label" parent="CollapsibleContainer/TextureButton"]
+[node name="ScorpionLeft" type="Label" parent="CollapsibleContainer/Menu"]
 layout_mode = 0
 offset_left = 60.4213
 offset_top = 57.2877
@@ -260,7 +258,7 @@ text = "0"
 label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
-[node name="TowerCost4" type="Label" parent="CollapsibleContainer/TextureButton"]
+[node name="ScorpionBeaten" type="Label" parent="CollapsibleContainer/Menu"]
 layout_mode = 0
 offset_left = 60.0
 offset_top = 40.9875
@@ -270,14 +268,16 @@ text = "0"
 label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
-[node name="Sprite2D2" type="Sprite2D" parent="CollapsibleContainer/TextureButton"]
+[node name="Sprite2D2" type="Sprite2D" parent="CollapsibleContainer/Menu"]
+visible = false
 position = Vector2(116.227, 19.8537)
 scale = Vector2(0.595755, 0.595755)
 texture = ExtResource("10_wp0rr")
 region_enabled = true
 region_rect = Rect2(1024, 640, 64, 64)
 
-[node name="TowerCost6" type="Label" parent="CollapsibleContainer/TextureButton"]
+[node name="TowerCost6" type="Label" parent="CollapsibleContainer/Menu"]
+visible = false
 layout_mode = 0
 offset_left = 96.4855
 offset_top = 57.7932
@@ -287,7 +287,8 @@ text = "0"
 label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
-[node name="TowerCost7" type="Label" parent="CollapsibleContainer/TextureButton"]
+[node name="TowerCost7" type="Label" parent="CollapsibleContainer/Menu"]
+visible = false
 layout_mode = 0
 offset_left = 96.0642
 offset_top = 41.493
@@ -297,14 +298,16 @@ text = "0"
 label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
-[node name="Sprite2D3" type="Sprite2D" parent="CollapsibleContainer/TextureButton"]
+[node name="Sprite2D3" type="Sprite2D" parent="CollapsibleContainer/Menu"]
+visible = false
 position = Vector2(156.269, 19.8537)
 scale = Vector2(0.595755, 0.595755)
 texture = ExtResource("10_wp0rr")
 region_enabled = true
 region_rect = Rect2(1088, 640, 64, 64)
 
-[node name="TowerCost8" type="Label" parent="CollapsibleContainer/TextureButton"]
+[node name="TowerCost8" type="Label" parent="CollapsibleContainer/Menu"]
+visible = false
 layout_mode = 0
 offset_left = 136.646
 offset_top = 58.3222
@@ -314,7 +317,8 @@ text = "0"
 label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
-[node name="TowerCost9" type="Label" parent="CollapsibleContainer/TextureButton"]
+[node name="TowerCost9" type="Label" parent="CollapsibleContainer/Menu"]
+visible = false
 layout_mode = 0
 offset_left = 136.225
 offset_top = 42.0219
@@ -324,7 +328,8 @@ text = "0"
 label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
-[node name="Logic" type="Node" parent="CollapsibleContainer" node_paths=PackedStringArray("collapsible", "texture_button")]
+[node name="Logic" type="Node" parent="CollapsibleContainer" node_paths=PackedStringArray("collapsible", "texture_button", "menu_node")]
 script = ExtResource("15_4wy6o")
 collapsible = NodePath("..")
 texture_button = NodePath("../../LevelDetails")
+menu_node = NodePath("../Menu")
