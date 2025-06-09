@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://dv6xt8vpvoe1x"]
+
+[ext_resource type="Script" uid="uid://bkrkt8f0p66p3" path="res://src/towers/ProjectileTower.gd" id="1_5slb2"]
+[ext_resource type="Texture2D" uid="uid://oofm5ltvg73n" path="res://assets/graphics/towers/1/1.png" id="2_de1e5"]
+[ext_resource type="Texture2D" uid="uid://l4e14da5jivq" path="res://assets/graphics/towers/1/3.png" id="2_m2ro1"]
+[ext_resource type="PackedScene" uid="uid://1wam1py6jwsm" path="res://scenes/towers/projectiles/rocket.tscn" id="2_oa2s1"]
+[ext_resource type="Texture2D" uid="uid://bupmx3n2414iq" path="res://assets/graphics/towers/1/2.png" id="3_m2ro1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_de1e5"]
+radius = 123.803
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oa2s1"]
+size = Vector2(79, 91)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_de1e5"]
+size = Vector2(165.77, 190.951)
+
+[node name="StoneTower" type="Node2D"]
+script = ExtResource("1_5slb2")
+projectile_scene = ExtResource("2_oa2s1")
+base_attack_damage = 8.0
+base_damage_increase_per_level = 4.0
+base_damage_upgrade_cost = 20
+cost_increase_per_level_damage = 12
+base_range_radius = 120.0
+base_range_increase_factor = 1.2
+base_range_upgrade_cost = 25
+cost_increase_per_level_range = 15
+base_attack_interval = 0.8
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="shooter_1" type="Sprite2D" parent="."]
+position = Vector2(-2, -4)
+scale = Vector2(0.515625, 0.515625)
+texture = ExtResource("2_de1e5")
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(-3.8147e-06, -3.8147e-06)
+scale = Vector2(0.518293, 0.518293)
+texture = ExtResource("2_m2ro1")
+
+[node name="shooter_2" type="Sprite2D" parent="Body"]
+position = Vector2(-4, 26)
+texture = ExtResource("3_m2ro1")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+scale = Vector2(0.476563, 0.476563)
+collision_layer = 0
+collision_mask = 2
+input_pickable = false
+priority = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+position = Vector2(-6.29508, -2.09836)
+shape = SubResource("CircleShape2D_de1e5")
+debug_color = Color(1, 1, 1, 0.42)
+
+[node name="PlacementArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlacementArea"]
+position = Vector2(-3.5, -0.5)
+shape = SubResource("RectangleShape2D_oa2s1")
+debug_color = Color(0.86, 0.0774, 0.27305, 0.419608)
+
+[node name="ClickArea" type="Area2D" parent="."]
+scale = Vector2(0.476563, 0.476563)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea"]
+position = Vector2(-7.34425, -1.04918)
+shape = SubResource("RectangleShape2D_de1e5")
+debug_color = Color(0, 0.581366, 0.666777, 0.42)
