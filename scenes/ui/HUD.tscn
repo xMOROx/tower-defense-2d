@@ -115,6 +115,7 @@ offset_top = 78.1944
 offset_right = 92.2885
 offset_bottom = 101.194
 text = "50 $"
+label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
 [node name="shooter_1" type="Sprite2D" parent="TowerBar/Tower1"]
@@ -221,6 +222,7 @@ offset_top = 13.4704
 offset_right = 52.3388
 offset_bottom = 26.4704
 text = "Enemy"
+label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
 [node name="TowerCost2" type="Label" parent="CollapsibleContainer/Menu"]
@@ -230,6 +232,7 @@ offset_top = 40.2254
 offset_right = 55.3454
 offset_bottom = 53.2254
 text = "BEATEN"
+label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
 [node name="TowerCost3" type="Label" parent="CollapsibleContainer/Menu"]
@@ -239,6 +242,7 @@ offset_top = 56.7975
 offset_right = 52.125
 offset_bottom = 69.7975
 text = "LEFT"
+label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
 [node name="Scorpion" type="Sprite2D" parent="CollapsibleContainer/Menu"]
@@ -254,6 +258,7 @@ offset_top = 57.2877
 offset_right = 100.421
 offset_bottom = 70.2877
 text = "0"
+label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
 [node name="ScorpionBeaten" type="Label" parent="CollapsibleContainer/Menu"]
@@ -263,6 +268,7 @@ offset_top = 40.9875
 offset_right = 100.0
 offset_bottom = 53.9875
 text = "0"
+label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
 [node name="Goblin" type="Sprite2D" parent="CollapsibleContainer/Menu"]
@@ -278,6 +284,7 @@ offset_top = 57.7932
 offset_right = 136.485
 offset_bottom = 70.7932
 text = "0"
+label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
 [node name="GoblinBeaten" type="Label" parent="CollapsibleContainer/Menu"]
@@ -287,6 +294,7 @@ offset_top = 41.493
 offset_right = 136.064
 offset_bottom = 54.493
 text = "0"
+label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
 [node name="Orc" type="Sprite2D" parent="CollapsibleContainer/Menu"]
@@ -302,6 +310,7 @@ offset_top = 58.3222
 offset_right = 176.646
 offset_bottom = 71.3222
 text = "0"
+label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
 [node name="OrcBeaten" type="Label" parent="CollapsibleContainer/Menu"]
@@ -311,6 +320,7 @@ offset_top = 42.0219
 offset_right = 176.225
 offset_bottom = 55.0219
 text = "0"
+label_settings = ExtResource("11_blesy")
 horizontal_alignment = 1
 
 [node name="Logic" type="Node" parent="CollapsibleContainer" node_paths=PackedStringArray("collapsible", "texture_button", "menu_node")]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=146 format=3 uid="uid://dryp4ys4boe31"]
 
-[ext_resource type="Script" path="res://src/enemies/AnimatedEnemy.gd" id="1_edh73"]
+[ext_resource type="Script" uid="uid://dyqks13s88wra" path="res://src/enemies/AnimatedEnemy.gd" id="1_edh73"]
 [ext_resource type="Texture2D" uid="uid://diepsccwd4jc" path="res://assets/enemies/goblin/attack/3_enemies_1_attack_000.png" id="2_qnxo6"]
 [ext_resource type="Texture2D" uid="uid://btwr27nhp6owh" path="res://assets/enemies/goblin/attack/3_enemies_1_attack_001.png" id="3_rmjy3"]
 [ext_resource type="Texture2D" uid="uid://bwslfbsuk68yi" path="res://assets/enemies/goblin/attack/3_enemies_1_attack_002.png" id="4_6dpup"]
@@ -622,9 +622,9 @@ corner_radius_bottom_left = 7
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_edh73")
-speed = 80.0
-max_health = 15.0
-currency_reward = 8
+speed = 50.0
+max_health = 24.0
+currency_reward = 10
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, -4)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=146 format=3 uid="uid://b7ovpufip8rl8"]
 
-[ext_resource type="Script" path="res://src/enemies/AnimatedEnemy.gd" id="1_edh73"]
+[ext_resource type="Script" uid="uid://dyqks13s88wra" path="res://src/enemies/AnimatedEnemy.gd" id="1_edh73"]
 [ext_resource type="Texture2D" uid="uid://bbbbsxi41mdrs" path="res://assets/enemies/orc/attack/8_enemies_1_attack_000.png" id="2_ys2uv"]
 [ext_resource type="Texture2D" uid="uid://dy4dfyq4vh36" path="res://assets/enemies/orc/attack/8_enemies_1_attack_001.png" id="3_6puib"]
 [ext_resource type="Texture2D" uid="uid://bwl23axbpl8cv" path="res://assets/enemies/orc/attack/8_enemies_1_attack_002.png" id="4_77d0w"]
@@ -622,9 +622,9 @@ corner_radius_bottom_left = 7
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_edh73")
-speed = 80.0
-max_health = 15.0
-currency_reward = 8
+speed = 130.0
+max_health = 8.0
+currency_reward = 5
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(5, -4)
