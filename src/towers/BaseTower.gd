@@ -148,7 +148,7 @@ func _evaluate_and_set_target():
 	var best_possible_target = _select_best_target(valid_targets_now)
 	current_target = best_possible_target
 
-func _on_target_died(enemy_that_died: Node2D):
+func _on_target_died(enemy_that_died: Node2D, _extra_arg):
 	if current_target == enemy_that_died:
 		_evaluate_and_set_target()
 		_attempt_immediate_attack()
