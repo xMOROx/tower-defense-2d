@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b34woc6tm74qs"]
+[gd_scene load_steps=22 format=3 uid="uid://b34woc6tm74qs"]
 
 [ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://src/Hud.gd" id="1_6bi52"]
 [ext_resource type="PackedScene" uid="uid://dhic07exb4uhr" path="res://scenes/ui/TowerUpgradeMenu.tscn" id="2_e8r00"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cxk1owc4terpo" path="res://assets/ui/Counter/Icon/Money.png" id="8_rfrwv"]
 [ext_resource type="Texture2D" uid="uid://cnvq0wgaq04g6" path="res://assets/ui/Level/Button/Dummy.png" id="9_oteo6"]
 [ext_resource type="Texture2D" uid="uid://l4e14da5jivq" path="res://assets/graphics/towers/1/3.png" id="10_lo123"]
-[ext_resource type="Texture2D" uid="uid://c0x2mx1blwlwl" path="res://assets/graphics/towerDefense_tilesheet.png" id="10_wp0rr"]
+[ext_resource type="LabelSettings" uid="uid://cypijt1fhwg2k" path="res://assets/fonts/LabelSettingsLittleFont.tres" id="11_blesy"]
 [ext_resource type="Texture2D" uid="uid://oofm5ltvg73n" path="res://assets/graphics/towers/1/1.png" id="11_ffvok"]
 [ext_resource type="Texture2D" uid="uid://5le64dqrhc52" path="res://assets/ui/Bar/Background.png" id="12_tk5th"]
 [ext_resource type="Texture2D" uid="uid://d4ba564kiwulq" path="res://assets/ui/Bar/Line.png" id="13_khi7q"]
@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://bnnia3l1kh3p4" path="res://src/ui/LevelDetailsMenu.gd" id="15_4wy6o"]
 [ext_resource type="Script" uid="uid://itxppgdb2xpc" path="res://addons/collapsible_container/collapsible_elements/collapsible_container.gd" id="15_blesy"]
 [ext_resource type="Texture2D" uid="uid://bfeqyhb6pwiby" path="res://assets/enemies/scorpion/idle/1_enemies_1_idle_000.png" id="18_rfrwv"]
+[ext_resource type="Texture2D" uid="uid://bb68g2mb3fs2i" path="res://assets/enemies/goblin/idle/3_enemies_1_idle_000.png" id="19_oteo6"]
+[ext_resource type="Texture2D" uid="uid://go5fvpr7lpgo" path="res://assets/enemies/orc/idle/8_enemies_1_idle_000.png" id="20_oteo6"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_6bi52")
@@ -263,16 +265,13 @@ offset_bottom = 53.9875
 text = "0"
 horizontal_alignment = 1
 
-[node name="Sprite2D2" type="Sprite2D" parent="CollapsibleContainer/Menu"]
-visible = false
-position = Vector2(116.227, 19.8537)
-scale = Vector2(0.595755, 0.595755)
-texture = ExtResource("10_wp0rr")
-region_enabled = true
+[node name="Goblin" type="Sprite2D" parent="CollapsibleContainer/Menu"]
+position = Vector2(120.321, 18.7292)
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("19_oteo6")
 region_rect = Rect2(1024, 640, 64, 64)
 
-[node name="TowerCost6" type="Label" parent="CollapsibleContainer/Menu"]
-visible = false
+[node name="GoblinLeft" type="Label" parent="CollapsibleContainer/Menu"]
 layout_mode = 0
 offset_left = 96.4855
 offset_top = 57.7932
@@ -281,8 +280,7 @@ offset_bottom = 70.7932
 text = "0"
 horizontal_alignment = 1
 
-[node name="TowerCost7" type="Label" parent="CollapsibleContainer/Menu"]
-visible = false
+[node name="GoblinBeaten" type="Label" parent="CollapsibleContainer/Menu"]
 layout_mode = 0
 offset_left = 96.0642
 offset_top = 41.493
@@ -291,16 +289,13 @@ offset_bottom = 54.493
 text = "0"
 horizontal_alignment = 1
 
-[node name="Sprite2D3" type="Sprite2D" parent="CollapsibleContainer/Menu"]
-visible = false
-position = Vector2(156.269, 19.8537)
-scale = Vector2(0.595755, 0.595755)
-texture = ExtResource("10_wp0rr")
-region_enabled = true
+[node name="Orc" type="Sprite2D" parent="CollapsibleContainer/Menu"]
+position = Vector2(159.684, 19.8537)
+scale = Vector2(0.11, 0.11)
+texture = ExtResource("20_oteo6")
 region_rect = Rect2(1088, 640, 64, 64)
 
-[node name="TowerCost8" type="Label" parent="CollapsibleContainer/Menu"]
-visible = false
+[node name="OrcLeft" type="Label" parent="CollapsibleContainer/Menu"]
 layout_mode = 0
 offset_left = 136.646
 offset_top = 58.3222
@@ -309,8 +304,7 @@ offset_bottom = 71.3222
 text = "0"
 horizontal_alignment = 1
 
-[node name="TowerCost9" type="Label" parent="CollapsibleContainer/Menu"]
-visible = false
+[node name="OrcBeaten" type="Label" parent="CollapsibleContainer/Menu"]
 layout_mode = 0
 offset_left = 136.225
 offset_top = 42.0219

@@ -64,15 +64,14 @@ func _ready() -> void:
 				"left_label": menu_node.get_node_or_null("ScorpionLeft"),
 				"beaten_label": menu_node.get_node_or_null("ScorpionBeaten")
 			},
-			# Add other enemy types here:
-			# "res://scenes/enemies/Goblin.tscn": {
-			#     "left_label": menu_node.get_node_or_null("GoblinLeft"),
-			#     "beaten_label": menu_node.get_node_or_null("GoblinBeaten")
-			# },
-			# "res://scenes/enemies/Orc.tscn": {
-			#     "left_label": menu_node.get_node_or_null("OrcLeft"),
-			#     "beaten_label": menu_node.get_node_or_null("OrcBeaten")
-			# }
+			 "res://scenes/enemies/Goblin.tscn": {
+				 "left_label": menu_node.get_node_or_null("GoblinLeft"),
+				 "beaten_label": menu_node.get_node_or_null("GoblinBeaten")
+			 },
+			 "res://scenes/enemies/Orc.tscn": {
+				 "left_label": menu_node.get_node_or_null("OrcLeft"),
+				 "beaten_label": menu_node.get_node_or_null("OrcBeaten")
+			 }
 		}
 
 		# Basic validation for initialized labels
