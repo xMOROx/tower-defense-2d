@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dv6xt8vpvoe1x"]
+[gd_scene load_steps=13 format=3 uid="uid://dv6xt8vpvoe1x"]
 
-[ext_resource type="Script" uid="uid://bkrkt8f0p66p3" path="res://src/towers/ProjectileTower.gd" id="1_5slb2"]
+[ext_resource type="Script" uid="uid://i2o62druliib" path="res://src/towers/StoneTower.gd" id="1_holi1"]
 [ext_resource type="Texture2D" uid="uid://oofm5ltvg73n" path="res://assets/graphics/towers/1/1.png" id="2_de1e5"]
 [ext_resource type="Texture2D" uid="uid://l4e14da5jivq" path="res://assets/graphics/towers/1/3.png" id="2_m2ro1"]
 [ext_resource type="PackedScene" uid="uid://1wam1py6jwsm" path="res://scenes/towers/projectiles/stone.tscn" id="2_oa2s1"]
 [ext_resource type="Texture2D" uid="uid://bupmx3n2414iq" path="res://assets/graphics/towers/1/2.png" id="3_m2ro1"]
+[ext_resource type="Texture2D" uid="uid://peeyug1khd05" path="res://assets/graphics/towers/1/6.png" id="3_yx0br"]
+[ext_resource type="Texture2D" uid="uid://b4wvfka4n4rle" path="res://assets/graphics/towers/1/7.png" id="4_eys36"]
+[ext_resource type="Texture2D" uid="uid://ckl5ieynx627d" path="res://assets/graphics/towers/1/4.png" id="5_vuyox"]
+[ext_resource type="Texture2D" uid="uid://5eitivw0d0va" path="res://assets/graphics/towers/1/5.png" id="7_lkcq6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_de1e5"]
 radius = 123.803
@@ -16,7 +20,14 @@ size = Vector2(79, 91)
 size = Vector2(165.77, 190.951)
 
 [node name="StoneTower" type="Node2D"]
-script = ExtResource("1_5slb2")
+script = ExtResource("1_holi1")
+body_level1_texture = ExtResource("2_m2ro1")
+body_level2_texture = ExtResource("3_yx0br")
+body_level4_texture = ExtResource("4_eys36")
+shooter1_level1_texture = ExtResource("5_vuyox")
+shooter1_level3_texture = ExtResource("2_de1e5")
+shooter2_level1_texture = ExtResource("7_lkcq6")
+shooter2_level3_texture = ExtResource("3_m2ro1")
 projectile_scene = ExtResource("2_oa2s1")
 base_attack_damage = 8.0
 base_damage_increase_per_level = 4.0
