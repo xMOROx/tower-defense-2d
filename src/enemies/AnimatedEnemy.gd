@@ -33,7 +33,7 @@ func die():
 	set_process(false)
 	var collision_shape = find_child("CollisionShape2D")
 	if collision_shape:
-		collision_shape.disabled = true
+		collision_shape.call_deferred("set_disabled", true)
 	else:
 		printerr(name, ": Could not find CollisionShape2D to disable.")
 

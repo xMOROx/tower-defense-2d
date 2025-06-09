@@ -60,7 +60,7 @@ size = Vector2(110.5, 603)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghfwy"]
 size = Vector2(269, 121.5)
 
-[node name="Level2" type="Node2D"]
+[node name="Level" type="Node2D"]
 script = ExtResource("1_55yl8")
 basic_tower_scene = ExtResource("2_j2gbx")
 
