@@ -1,115 +1,127 @@
 [
-	{
-		"wave_name": "Wave 1: Scorpion Scout",
-		"spawns": [
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 8,
-				"interval": 0.8,
-				"start_delay": 1.0
-			}
-		]
-	},
-	{
-		"wave_name": "Wave 2: Double Trouble",
-		"spawns": [
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 6,
-				"interval": 0.6,
-				"start_delay": 0.5
-			},
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 6,
-				"interval": 0.6,
-				"start_delay": 4.0
-			}
-		]
-	},
-	{
-		"wave_name": "Wave 3: Rapid Assault",
-		"spawns": [
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 15,
-				"interval": 0.4,
-				"start_delay": 0.3
-			}
-		]
-	},
-	{
-		"wave_name": "Wave 4: Triple Threat",
-		"spawns": [
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 8,
-				"interval": 0.5,
-				"start_delay": 0.2
-			},
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 8,
-				"interval": 0.5,
-				"start_delay": 3.5
-			},
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 8,
-				"interval": 0.5,
-				"start_delay": 7.0
-			}
-		]
-	},
-	{
-		"wave_name": "Wave 5: Swarm Mode",
-		"spawns": [
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 25,
-				"interval": 0.3,
-				"start_delay": 0.5
-			}
-		]
-	},
-	{
-		"wave_name": "Wave 6: Relentless Waves",
-		"spawns": [
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 12,
-				"interval": 0.4,
-				"start_delay": 0.1
-			},
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 12,
-				"interval": 0.3,
-				"start_delay": 5.0
-			},
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 12,
-				"interval": 0.2,
-				"start_delay": 9.0
-			}
-		]
-	},
-	{
-		"wave_name": "Wave 7: Scorpion Apocalypse",
-		"spawns": [
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 20,
-				"interval": 0.25,
-				"start_delay": 0.2
-			},
-			{
-				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
-				"count": 20,
-				"interval": 0.2,
-				"start_delay": 6.0
-			}
-		]
-	}
+   {
+      "wave_name": "Wave 1: Scorpion Scout",
+      "spawns": [
+         {
+            "enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+            "count": 8,
+            "interval": 0.8,
+            "start_delay": 1.0
+         }
+      ]
+   },
+   {
+      "wave_name": "Wave 2: Double Trouble (Scorpions & Goblins)",
+      "spawns": [
+         {
+            "enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+            "count": 6,
+            "interval": 0.6,
+            "start_delay": 0.5
+         },
+         {
+            "enemy_scene_path": "res://scenes/enemies/Goblin.tscn",
+            "count": 8,
+            "interval": 0.4,
+            "start_delay": 4.0
+         }
+      ]
+   },
+   {
+      "wave_name": "Wave 3: Rapid Assault (Goblins & Orcs)",
+      "spawns": [
+         {
+            "enemy_scene_path": "res://scenes/enemies/Goblin.tscn",
+            "count": 15,
+            "interval": 0.3,
+            "start_delay": 0.3
+         },
+         {
+            "enemy_scene_path": "res://scenes/enemies/Orc.tscn",
+            "count": 5,
+            "interval": 0.7,
+            "start_delay": 3.0
+         }
+      ]
+   },
+   {
+      "wave_name": "Wave 4: Triple Threat (Mixed)",
+      "spawns": [
+         {
+            "enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+            "count": 5,
+            "interval": 0.6,
+            "start_delay": 0.2
+         },
+         {
+            "enemy_scene_path": "res://scenes/enemies/Orc.tscn",
+            "count": 7,
+            "interval": 0.5,
+            "start_delay": 3.5
+         },
+         {
+            "enemy_scene_path": "res://scenes/enemies/Goblin.tscn",
+            "count": 10,
+            "interval": 0.3,
+            "start_delay": 7.0
+         }
+      ]
+   },
+   {
+      "wave_name": "Wave 5: Swarm Mode (Goblins)",
+      "spawns": [
+         {
+            "enemy_scene_path": "res://scenes/enemies/Goblin.tscn",
+            "count": 25,
+            "interval": 0.2,
+            "start_delay": 0.5
+         }
+      ]
+   },
+   {
+      "wave_name": "Wave 6: Relentless Waves (Mixed)",
+      "spawns": [
+         {
+            "enemy_scene_path": "res://scenes/enemies/Orc.tscn",
+            "count": 10,
+            "interval": 0.5,
+            "start_delay": 0.1
+         },
+         {
+            "enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+            "count": 7,
+            "interval": 0.4,
+            "start_delay": 5.0
+         },
+         {
+            "enemy_scene_path": "res://scenes/enemies/Goblin.tscn",
+            "count": 15,
+            "interval": 0.25,
+            "start_delay": 9.0
+         }
+      ]
+   },
+   {
+      "wave_name": "Wave 7: Apocalypse (All Types)",
+      "spawns": [
+         {
+            "enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
+            "count": 10,
+            "interval": 0.3,
+            "start_delay": 0.2
+         },
+         {
+            "enemy_scene_path": "res://scenes/enemies/Orc.tscn",
+            "count": 15,
+            "interval": 0.35,
+            "start_delay": 4.0
+         },
+         {
+            "enemy_scene_path": "res://scenes/enemies/Goblin.tscn",
+            "count": 20,
+            "interval": 0.15,
+            "start_delay": 8.0
+         }
+      ]
+   }
 ]
