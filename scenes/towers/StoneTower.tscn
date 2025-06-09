@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dv6xt8vpvoe1x"]
+[gd_scene load_steps=14 format=3 uid="uid://dv6xt8vpvoe1x"]
 
 [ext_resource type="Script" uid="uid://i2o62druliib" path="res://src/towers/StoneTower.gd" id="1_holi1"]
 [ext_resource type="Texture2D" uid="uid://oofm5ltvg73n" path="res://assets/graphics/towers/1/1.png" id="2_de1e5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b4wvfka4n4rle" path="res://assets/graphics/towers/1/7.png" id="4_eys36"]
 [ext_resource type="Texture2D" uid="uid://ckl5ieynx627d" path="res://assets/graphics/towers/1/4.png" id="5_vuyox"]
 [ext_resource type="Texture2D" uid="uid://5eitivw0d0va" path="res://assets/graphics/towers/1/5.png" id="7_lkcq6"]
+[ext_resource type="Texture2D" uid="uid://c6dgj1nr81gib" path="res://assets/graphics/projectiles/1/40.png" id="10_eys36"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_de1e5"]
 radius = 123.803
@@ -46,6 +47,12 @@ wait_time = 0.25
 position = Vector2(-2, -4)
 scale = Vector2(0.515625, 0.515625)
 texture = ExtResource("2_de1e5")
+
+[node name="stone" type="Sprite2D" parent="shooter_1"]
+visible = false
+position = Vector2(-2, 0)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("10_eys36")
 
 [node name="Body" type="Sprite2D" parent="."]
 position = Vector2(-3.8147e-06, -3.8147e-06)

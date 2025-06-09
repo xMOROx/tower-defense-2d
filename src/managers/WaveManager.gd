@@ -204,7 +204,7 @@ func _spawn_next_enemy():
 		enemies_spawned_this_wave += 1
 		enemies_alive_this_wave += 1
 		new_enemy.died.connect(_on_enemy_removed.bind(group_data["enemy_name"]), CONNECT_ONE_SHOT | CONNECT_REFERENCE_COUNTED)
-		new_enemy.leaked.connect(_on_enemy_removed, CONNECT_ONE_SHOT | CONNECT_REFERENCE_COUNTED)
+		new_enemy.leaked.connect(_on_enemy_removed.bind(group_data["enemy_name"]), CONNECT_ONE_SHOT | CONNECT_REFERENCE_COUNTED)
 	
 	group_data["remaining"] -= 1
 

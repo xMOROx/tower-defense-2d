@@ -97,6 +97,7 @@ initial_path_segment_nodepath = NodePath("../Paths/EntrySegment")
 path_2d_node = NodePath("Path2D")
 
 [node name="Path2D" type="Path2D" parent="World/Paths/EntrySegment"]
+visible = false
 curve = SubResource("Curve2D_68xhw")
 
 [node name="PathBlocker" type="Area2D" parent="World"]

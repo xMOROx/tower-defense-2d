@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b34woc6tm74qs"]
+[gd_scene load_steps=23 format=3 uid="uid://b34woc6tm74qs"]
 
 [ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://src/Hud.gd" id="1_6bi52"]
 [ext_resource type="PackedScene" uid="uid://dhic07exb4uhr" path="res://scenes/ui/TowerUpgradeMenu.tscn" id="2_e8r00"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://bfeqyhb6pwiby" path="res://assets/enemies/scorpion/idle/1_enemies_1_idle_000.png" id="18_rfrwv"]
 [ext_resource type="Texture2D" uid="uid://bb68g2mb3fs2i" path="res://assets/enemies/goblin/idle/3_enemies_1_idle_000.png" id="19_oteo6"]
 [ext_resource type="Texture2D" uid="uid://go5fvpr7lpgo" path="res://assets/enemies/orc/idle/8_enemies_1_idle_000.png" id="20_oteo6"]
+[ext_resource type="AudioStream" uid="uid://qym13e4xyrx3" path="res://assets/01. Age of War - Theme Song.mp3" id="22_wp0rr"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_6bi52")
@@ -328,3 +329,8 @@ script = ExtResource("15_4wy6o")
 collapsible = NodePath("..")
 texture_button = NodePath("../../LevelDetails")
 menu_node = NodePath("../Menu")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_wp0rr")
+autoplay = true
+parameters/looping = true

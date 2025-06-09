@@ -29,6 +29,7 @@ func goto_level_winner(stars):
 	_change_scene(level_winner_path, false, {"stars": stars, "level_name": last_played_level_name})
 
 func goto_level(level_scene_path: String, level_name: String):
+	GameManager.reset_game()
 	if level_scene_path.is_empty() or not ResourceLoader.exists(level_scene_path):
 		printerr("SceneManager Error: Invalid or non-existent level path provided:", level_scene_path)
 		goto_main_menu()

@@ -78,7 +78,7 @@
 				"enemy_scene_path": "res://scenes/enemies/Scorpion.tscn",
 				"count": 15,
 				"interval": 0.3,
-				"start_delay": 0.0
+				"start_delay": 0.1
 			}
 		]
 	}

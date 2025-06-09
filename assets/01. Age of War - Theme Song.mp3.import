@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://qym13e4xyrx3"
+path="res://.godot/imported/01. Age of War - Theme Song.mp3-f4945f3f369b6e6692a119e78e50839e.mp3str"
+
+[deps]
+
+source_file="res://assets/01. Age of War - Theme Song.mp3"
+dest_files=["res://.godot/imported/01. Age of War - Theme Song.mp3-f4945f3f369b6e6692a119e78e50839e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
