@@ -1,13 +1,12 @@
-[gd_scene load_steps=23 format=4 uid="uid://b7gkoyrdj0ncx"]
+[gd_scene load_steps=22 format=4 uid="uid://cjklwn7gbf7gc"]
 
 [ext_resource type="Script" uid="uid://djvuwq56jqhf1" path="res://src/maps/Level1.gd" id="1_55yl8"]
 [ext_resource type="PackedScene" uid="uid://dypncu8rnysyf" path="res://scenes/enemies/WaveManager.tscn" id="2_55yl8"]
 [ext_resource type="PackedScene" uid="uid://dv6xt8vpvoe1x" path="res://scenes/towers/StoneTower.tscn" id="2_j2gbx"]
-[ext_resource type="TileSet" uid="uid://gwexrd7vgnos" path="res://assets/tiles/undead.tres" id="3_5tovl"]
-[ext_resource type="Script" uid="uid://etm7lcl52ic" path="res://src/Hud.gd" id="5_ladvl"]
+[ext_resource type="TileSet" uid="uid://bku8p6osp1gm3" path="res://assets/tiles/undead.tres" id="3_5tovl"]
+[ext_resource type="PackedScene" uid="uid://b34woc6tm74qs" path="res://scenes/ui/HUD.tscn" id="3_j2gbx"]
 [ext_resource type="Script" uid="uid://d2potcvpfge7f" path="res://src/spawners/BaseSpawner.gd" id="5_prr5q"]
 [ext_resource type="PackedScene" uid="uid://cpprkq5oeve7m" path="res://scenes/maps/paths/PathSegment.tscn" id="6_j2gbx"]
-[ext_resource type="PackedScene" uid="uid://dhic07exb4uhr" path="res://scenes/ui/TowerUpgradeMenu.tscn" id="6_n8iyc"]
 [ext_resource type="Script" uid="uid://djg5lxas2wk88" path="res://src/ui/ScalableCamera2D.gd" id="9_68xhw"]
 
 [sub_resource type="Curve2D" id="Curve2D_j2gbx"]
@@ -61,7 +60,7 @@ size = Vector2(110.5, 603)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghfwy"]
 size = Vector2(269, 121.5)
 
-[node name="Level" type="Node2D"]
+[node name="Level2" type="Node2D"]
 script = ExtResource("1_55yl8")
 basic_tower_scene = ExtResource("2_j2gbx")
 
@@ -213,55 +212,4 @@ limit_left = 0
 limit_top = 0
 script = ExtResource("9_68xhw")
 
-[node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("5_ladvl")
-
-[node name="LivesLabel" type="Label" parent="HUD"]
-offset_top = 999.515
-offset_right = 302.0
-offset_bottom = 1049.52
-theme_override_font_sizes/font_size = 36
-text = "Lives placeholder"
-metadata/_edit_use_anchors_ = true
-
-[node name="CurrencyLabel" type="Label" parent="HUD"]
-anchors_preset = -1
-anchor_left = -0.0409268
-anchor_top = 0.000418882
-anchor_right = -0.0409268
-anchor_bottom = 0.000418882
-offset_left = 1654.24
-offset_top = 127.095
-offset_right = 1985.24
-offset_bottom = 177.095
-theme_override_font_sizes/font_size = 24
-text = "Currency placeholder"
-horizontal_alignment = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="WaveLabel" type="Label" parent="HUD"]
-anchors_preset = -1
-anchor_left = 0.000178019
-anchor_top = 0.000360023
-anchor_right = 0.0241364
-anchor_bottom = 0.0114711
-offset_left = 1654.66
-offset_top = 64.6112
-offset_right = 1860.66
-offset_bottom = 98.6112
-theme_override_font_sizes/font_size = 24
-text = "Wave placeholder"
-horizontal_alignment = 3
-metadata/_edit_use_anchors_ = true
-
-[node name="TowerUpgradeMenu" parent="HUD" instance=ExtResource("6_n8iyc")]
-visible = false
-
-[node name="BuildTowerButton" type="Button" parent="HUD"]
-offset_left = 835.0
-offset_top = 999.515
-offset_right = 1006.0
-offset_bottom = 1030.52
-scale = Vector2(1.44, 1.44)
-text = "Build Tower (Cost 50)"
-metadata/_edit_use_anchors_ = true
+[node name="HUD" parent="." instance=ExtResource("3_j2gbx")]
